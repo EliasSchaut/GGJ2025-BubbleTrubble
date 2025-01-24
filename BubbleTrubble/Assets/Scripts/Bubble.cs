@@ -101,36 +101,51 @@ public class Bubble : MonoBehaviour
 
     private void UpdateComponentColor()
     {
+        var newColor = Color.white;
         // Set the color of the bubble
         switch (bubbleColor)
         {
             case BubbleColor.White:
-                GetComponent<Material>().color = Color.white;
+                newColor = Color.white;
                 break;
             case BubbleColor.Red:
-                GetComponent<Material>().color = Color.red;
+                newColor = Color.red;
                 break;
             case BubbleColor.Blue:
-                GetComponent<Material>().color = Color.blue;
+                newColor = Color.blue;
                 break;
             case BubbleColor.Yellow:
-                GetComponent<Material>().color = Color.yellow;
+                newColor = Color.yellow;
                 break;
             case BubbleColor.Green:
-                GetComponent<Material>().color = Color.green;
+                newColor = Color.green;
                 break;
             case BubbleColor.Purple:
-                GetComponent<Material>().color = new Color(0.5f, 0, 0.5f);
+                newColor = new Color(0.5f, 0, 0.5f);
                 break;
             case BubbleColor.Orange:
-                GetComponent<Material>().color = new Color(1, 0.5f, 0);
+                newColor = new Color(1, 0.5f, 0);
                 break;
             case BubbleColor.Brown:
-                GetComponent<Material>().color = new Color(0.5f, 0.25f, 0);
+                newColor = new Color(0.5f, 0.25f, 0);
                 break;
             case BubbleColor.Black:
-                GetComponent<Material>().color = Color.black;
+                newColor = Color.black;
                 break;
+        }
+        
+        // Get the Renderer component from the GameObject
+        Renderer objectRenderer = GetComponent<Renderer>();
+
+        // Check if the GameObject has a Renderer component
+        if (objectRenderer != null)
+        {
+            // Change the color of the material
+            objectRenderer.material.color = newColor;
+        }
+        else
+        {
+            Debug.LogWarning("No Renderer found on the GameObject!");
         }
     }
 }
