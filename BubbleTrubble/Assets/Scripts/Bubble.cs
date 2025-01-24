@@ -104,31 +104,31 @@ public class Bubble : MonoBehaviour
         switch (bubbleColor)
         {
             case BubbleColor.White:
-                GetComponent<SpriteRenderer>().color = Color.white;
+                GetComponent<Material>().color = Color.white;
                 break;
             case BubbleColor.Red:
-                GetComponent<SpriteRenderer>().color = Color.red;
+                GetComponent<Material>().color = Color.red;
                 break;
             case BubbleColor.Blue:
-                GetComponent<SpriteRenderer>().color = Color.blue;
+                GetComponent<Material>().color = Color.blue;
                 break;
             case BubbleColor.Yellow:
-                GetComponent<SpriteRenderer>().color = Color.yellow;
+                GetComponent<Material>().color = Color.yellow;
                 break;
             case BubbleColor.Green:
-                GetComponent<SpriteRenderer>().color = Color.green;
+                GetComponent<Material>().color = Color.green;
                 break;
             case BubbleColor.Purple:
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0, 0.5f);
+                GetComponent<Material>().color = new Color(0.5f, 0, 0.5f);
                 break;
             case BubbleColor.Orange:
-                GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0);
+                GetComponent<Material>().color = new Color(1, 0.5f, 0);
                 break;
             case BubbleColor.Brown:
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.25f, 0);
+                GetComponent<Material>().color = new Color(0.5f, 0.25f, 0);
                 break;
             case BubbleColor.Black:
-                GetComponent<SpriteRenderer>().color = Color.black;
+                GetComponent<Material>().color = Color.black;
                 break;
         }
     }
