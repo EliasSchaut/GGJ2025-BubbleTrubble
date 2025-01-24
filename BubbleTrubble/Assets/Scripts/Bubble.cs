@@ -8,6 +8,7 @@ public class Bubble : MonoBehaviour
     void Start()
     {
         bubbleColor = BubbleColor.White;
+        UpdateComponentColor();
     }
 
     // Update is called once per frame
