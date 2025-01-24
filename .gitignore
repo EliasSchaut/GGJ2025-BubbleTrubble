@@ -75,3 +75,8 @@ crashlytics-build.properties
 # IDE
 .idea
 .vscode
+
+# Autogen Unity Folder
+/BubbleTrubble/Library
+/BubbleTrubble/Logs
+/BubbleTrubble/Temp
