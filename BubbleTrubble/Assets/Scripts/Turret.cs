@@ -32,8 +32,7 @@ public class Turret : MonoBehaviour
         }
         
         GameObject shot = Instantiate(projectile, muzzle.position, muzzle.rotation);
-        
-        Projectile p = projectile.GetComponent<Projectile>();
+        Projectile p = shot.GetComponent<Projectile>();
         
         p.Initialize(color);
     }

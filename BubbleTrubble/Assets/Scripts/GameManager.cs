@@ -74,8 +74,10 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    
-    
+    public void EnemyKilled(int enemySelfWorth)
+    {
+        
+    }
     
     public void TogglePause()
     {

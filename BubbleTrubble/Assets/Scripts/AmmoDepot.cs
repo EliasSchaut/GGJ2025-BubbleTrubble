@@ -14,7 +14,7 @@ public class AmmoDepot : MonoBehaviour
     private void Start()
     {
         CheatAddBubble(BubbleColor.Red);
-        CheatAddBubble(BubbleColor.Orange);
+        CheatAddBubble(BubbleColor.Yellow);
         CheatAddBubble(BubbleColor.Blue);
     }
 

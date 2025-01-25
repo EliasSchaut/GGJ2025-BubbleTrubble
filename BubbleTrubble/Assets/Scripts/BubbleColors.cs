@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public static class BubbleColors
 {
-    public static void SetObjectColor(GameObject gameObject, BubbleColor bubbleColor)
+    public static void SetObjectColor(GameObject gameObject, BubbleColor baseColor, bool gray = false)
     {
         var newColor = Color.white;
-        // Set the color of the bubble
-        switch (bubbleColor)
+        
+        // Set the addedColor of the bubble
+        switch (baseColor)
         {
             case BubbleColor.White:
                 newColor = Color.white;
@@ -35,6 +37,11 @@ public static class BubbleColors
             case BubbleColor.Black:
                 newColor = Color.black;
                 break;
+        }
+        
+        if (gray)
+        {
+            newColor = Color.gray;
         }
         
         // Get the Renderer component from the GameObject

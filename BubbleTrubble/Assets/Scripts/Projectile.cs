@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float timeToLive = 5;
     
     [SerializeField] private Rigidbody rb;
+    
+    public BubbleColor Color { get; private set; }
 
     private float timer;
     
@@ -27,5 +29,7 @@ public class Projectile : MonoBehaviour
     public void Initialize(BubbleColor bubbleColor)
     {
         BubbleColors.SetObjectColor(gameObject, bubbleColor);
+        
+        Color = bubbleColor;
     }
 }
