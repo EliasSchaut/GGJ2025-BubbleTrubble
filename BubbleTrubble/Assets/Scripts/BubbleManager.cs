@@ -11,7 +11,7 @@ public class BubbleManager : MonoBehaviour
         bubbles.Add(bubble);
     }
 
-    public List<Bubble> FindMany()
+    public List<Bubble> GetAll()
     {
         return bubbles;
     }

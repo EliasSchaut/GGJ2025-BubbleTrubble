@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BeltGrid : MonoBehaviour
 {
-    [SerializeField] private GameObject bubbleManagerPrefab;
     [SerializeField] private Vector2Int[] beltCorners;
+    [SerializeField] private GameObject bubbleManagerPrefab;
     [SerializeField] private GameObject beltPrefab;
     [SerializeField] private GameObject bubbleDispenserPrefab;
     [SerializeField] private GameObject bubbleSinkPrefab;
@@ -64,7 +64,7 @@ public class BeltGrid : MonoBehaviour
 
     void UpdateBubbleMovement()
     {
-        foreach (Bubble bubble in bubbleManager.FindMany())
+        foreach (Bubble bubble in bubbleManager.GetAll())
         {
             if (!IsBubbleOnBelt(bubble)) continue;
             int bubbleSegment = bubble.GetBeltIndex();
