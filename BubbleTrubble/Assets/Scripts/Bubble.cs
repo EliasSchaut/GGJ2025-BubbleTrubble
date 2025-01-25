@@ -17,6 +17,8 @@ public class Bubble : MonoBehaviour
     
     private BubbleState currentState = BubbleState.OnBelt;
 
+    private int maxShots = 10;
+    
     private int shots = 10;
     
     private int beltIndex = 0;
@@ -25,7 +27,7 @@ public class Bubble : MonoBehaviour
     void Start()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
-        UpdateComponentColor();
+        BubbleColors.SetObjectColor(gameObject, bubbleColor);
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class Bubble : MonoBehaviour
     public void SetColor(BubbleColor color)
     {
         bubbleColor = color;
-        UpdateComponentColor();
+        BubbleColors.SetObjectColor(gameObject, bubbleColor);
     }
     
     public BubbleColor GetColor()
@@ -56,7 +58,7 @@ public class Bubble : MonoBehaviour
         {
             bubbleColor = color;
             PlayColorizeSound();
-            UpdateComponentColor();
+        	BubbleColors.SetObjectColor(gameObject, bubbleColor);
             return;
         }
 
@@ -68,59 +70,9 @@ public class Bubble : MonoBehaviour
         }
         
         PlayColorizeSound();
-        UpdateComponentColor();
+        BubbleColors.SetObjectColor(gameObject, bubbleColor);
     }
 
-    private void UpdateComponentColor()
-    {
-        var newColor = Color.white;
-        // Set the color of the bubble
-        switch (bubbleColor)
-        {
-            case BubbleColor.White:
-                newColor = Color.white;
-                break;
-            case BubbleColor.Red:
-                newColor = Color.red;
-                break;
-            case BubbleColor.Blue:
-                newColor = Color.blue;
-                break;
-            case BubbleColor.Yellow:
-                newColor = Color.yellow;
-                break;
-            case BubbleColor.Green:
-                newColor = Color.green;
-                break;
-            case BubbleColor.Purple:
-                newColor = new Color(0.5f, 0, 0.5f);
-                break;
-            case BubbleColor.Orange:
-                newColor = new Color(1, 0.5f, 0);
-                break;
-            case BubbleColor.Brown:
-                newColor = new Color(0.5f, 0.25f, 0);
-                break;
-            case BubbleColor.Black:
-                newColor = Color.black;
-                break;
-        }
-        
-        // Get the Renderer component from the GameObject
-        Renderer objectRenderer = GetComponent<Renderer>();
-
-        // Check if the GameObject has a Renderer component
-        if (objectRenderer != null)
-        {
-            // Change the color of the material
-            objectRenderer.material.color = newColor;
-        }
-        else
-        {
-            Debug.LogWarning("No Renderer found on the GameObject!");
-        }
-    }
-    
     private void PlayColorizeSound()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
@@ -137,14 +89,20 @@ public class Bubble : MonoBehaviour
         return currentState;
     }
     
-    public void UseShot()
+    public bool UseShot()
     {
         shots--;
         if (shots <= 0)
         {
             Destroy(gameObject);
-            // FIXME: inform ammo demo that the bubble is destroyed
+            return true;
         }
+        {
+            float scale = Mathf.Clamp01(shots / (float)maxShots);
+            transform.localScale = new Vector3(scale, scale, scale);
+        }
+
+        return false;
     }
     
     public void SetBeltIndex(int index)

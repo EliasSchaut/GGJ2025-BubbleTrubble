@@ -1,54 +1,69 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AmmoDepot : MonoBehaviour
 {
-    [SerializeField] private GameObject ammo;
-    [SerializeField] private int ammoPerBubble = 10;
-    [SerializeField] private BubbleColor bubbleColor = BubbleColor.White;
+    private List<GameObject> ammo = new List<GameObject>();
     
     [SerializeField] private bool cheatMode;
+    [SerializeField] private GameObject cheatAmmoPrefab;
     
-    private int currentAmmo;
+    private int currentAmmoIndex = 0;
     
     private void Start()
     {
-        Reload();
+        CheatAddBubble(BubbleColor.Red);
+        CheatAddBubble(BubbleColor.Orange);
+        CheatAddBubble(BubbleColor.Blue);
     }
-    
-    public void Reload()
-    {
-        currentAmmo = ammoPerBubble;
-        
-        UpdateDepot();
-        
-        BubbleColors.SetObjectColor(ammo, bubbleColor);
-    }
-    
-    public bool TryUseAmmo()
-    {
-        if (currentAmmo <= 0) 
-            return false;
 
-        currentAmmo--;
-        UpdateDepot();
-        
-        if (cheatMode && currentAmmo == 0)
-            Reload();
+    public void SetCurrentAmmoIndex(int ammoIndex)
+    {
+        currentAmmoIndex = ammoIndex;
+    }
+
+    public int GetCurrentAmmoIndex()
+    {
+        return currentAmmoIndex;
+    }
+    
+    public BubbleColor TryUseAmmo()
+    {
+        if (currentAmmoIndex >= ammo.Count) {
+            return BubbleColor.NoColor;
+        }
+
+        Bubble ammoBubble = ammo[currentAmmoIndex].GetComponent<Bubble>();
+        BubbleColor ammoColor = ammoBubble.GetColor();
+        var destroyed = ammoBubble.UseShot();
+
+        if (destroyed) {
+            ammo.RemoveAt(currentAmmoIndex);
+            for (int index = currentAmmoIndex; index < ammo.Count; index++) {
+                ammo[index].transform.localPosition = new Vector3(index * 1.1f, 0, 0);
+            }
+        }
             
-        return true;
-    }
-
-    private void UpdateDepot()
-    {
-        float scale = Mathf.Clamp01(currentAmmo / (float)ammoPerBubble);
-
-        ammo.transform.localScale = new Vector3(scale, scale, scale);
+        return ammoColor;
     }
     
-    public void InitializeProjectile(GameObject projectile)
+    public void AddAmmo(GameObject bubble)
     {
-        Projectile shot = projectile.GetComponent<Projectile>();
-        
-        shot.Initialize(bubbleColor);
+        if (ammo.Count < 3) {
+            bubble.GetComponent<Bubble>().SetState(BubbleState.OnTurret);
+            bubble.transform.parent = transform;
+            bubble.transform.localPosition = new Vector3(ammo.Count * 1.1f, 0, 0);
+            ammo.Add(bubble);
+        }
+    }
+    
+    private void CheatAddBubble(BubbleColor color = BubbleColor.White)
+    {
+        if (cheatMode) {
+            GameObject bubble = Instantiate(cheatAmmoPrefab, transform);
+            bubble.GetComponent<Bubble>().MixWithColor(color);
+            AddAmmo(bubble);
+        }
     }
 }

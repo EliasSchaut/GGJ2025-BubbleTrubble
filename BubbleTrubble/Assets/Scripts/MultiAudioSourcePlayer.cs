@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MultiAudioSourcePlayer : MonoBehaviour
 {
-    private AudioSource[] audioSources;
+    private AudioSource[] audioSources = null;
 
     void Start()
     {
@@ -12,8 +12,13 @@ public class MultiAudioSourcePlayer : MonoBehaviour
 
     public void PlaySound(int index)
     {
+    	if (audioSources == null) {
+    		return;
+    	}
         if (index >= 0 && index < audioSources.Length) {
-            audioSources[index].Play();
+            if (audioSources[index]) {
+                audioSources[index].Play();
+            }
         }
     }
 }

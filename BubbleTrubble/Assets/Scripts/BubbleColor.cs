@@ -13,5 +13,6 @@ public enum BubbleColor
     Purple = Red | Blue,
     Orange = Red | Yellow,
     Green = Blue | Yellow,
-    Brown = Red | Blue | Yellow
+    Brown = Red | Blue | Yellow,
+    NoColor = 1 << 7,
 }
