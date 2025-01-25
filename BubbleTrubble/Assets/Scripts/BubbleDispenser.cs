@@ -14,6 +14,7 @@ public class BubbleDispenser : MonoBehaviour
     
     public Bubble SpawnBubble()
     {
+        Debug.Log("Spawning bubble");
         GameObject bubble = Instantiate(bubblePrefab, GetSpawnPoint(), Quaternion.identity);
         Bubble bubbleComponent = bubble.GetComponent<Bubble>();
         bubbleComponent.SetState(BubbleState.OnBelt);

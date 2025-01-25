@@ -49,13 +49,7 @@ public class Player : MonoBehaviour
             if (turret)
             {
                 turret.Move(inputVector);
-            
-                return;
             }
-            
-            moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
-            
-            rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
         }
         else
         {
@@ -75,18 +69,20 @@ public class Player : MonoBehaviour
         transform.rotation = spawnPoint.rotation;
     }
 
-    public void SetInTurret(TurretController turret, TurretDoor turretDoor) 
+    public void SetInTurret(TurretController turret, TurretDoor turretDoor)
     {
         this.turret = turret;
         this.turretDoor = turretDoor;
         _inTurret = true;
-        animator.SetTrigger("elevator_reached");
+        //animator.SetTrigger("elevator_reached");
+        transform.position = new Vector3(transform.position.x, transform.position.y - 10, transform.position.z);
     }
 
     private void LeaveTurret()
     {
         turretDoor.Leave();
         _inTurret = false;
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         
         turret = null;
         turretDoor = null;
@@ -104,7 +100,7 @@ public class Player : MonoBehaviour
             _holdsBubble = true;
             bubbleObject.GetComponent<Bubble>().SetState(BubbleState.CarriedByPlayer);
             bubble.transform.parent = transform;
-            bubble.transform.localPosition = new Vector3(0, 1.5f, 0);
+            bubble.transform.localPosition = new Vector3(0, 1.5f, 0.8f);
             animator.SetTrigger("bubble_pickup");
         }
         else {
@@ -128,6 +124,7 @@ public class Player : MonoBehaviour
         }
 
         if (Time.time - lastInteractTime < interactableInhibitTime) return;
+        lastInteractTime = Time.time;
 
         GameObject[] interactableObjects = GameObject.FindGameObjectsWithTag("Interactable");
         
@@ -213,12 +210,12 @@ public class Player : MonoBehaviour
             // Animation
             if (moveDirection != Vector3.zero)
             {
-                animator.SetBool("Walking", true);
+                //animator.SetBool("Walking", true);
                 rigidbody.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
             }
             else
             {
-                animator.SetBool("Walking", false);
+                //animator.SetBool("Walking", false);
             }
         }
     }

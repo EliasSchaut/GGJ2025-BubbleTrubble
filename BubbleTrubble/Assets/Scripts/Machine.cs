@@ -7,6 +7,7 @@ public class Machine : MonoBehaviour, IInteractable
     private GameObject currentBubble = null;
     
     private bool isProcessing = false;
+    private bool soundPlayed = false;
     
     private float processingStartTime = 0f;
     
@@ -26,7 +27,16 @@ public class Machine : MonoBehaviour, IInteractable
         if (currentBubble && isProcessing && (Time.time - processingStartTime) > processingTime)
         {
             isProcessing = false;
+            soundPlayed = true;
             currentBubble.GetComponent<Bubble>().MixWithColor(machineColor);
+        }
+        if (currentBubble && isProcessing && !soundPlayed && (Time.time - processingStartTime) > processingTime / 2.0f)
+        {
+            var bubbleComponent = currentBubble.GetComponent<Bubble>();
+            if (bubbleComponent.WouldChangeColor(machineColor)) {
+                bubbleComponent.PlayColorizeSound();
+            }
+            soundPlayed = true;
         }
     }
 
@@ -40,12 +50,13 @@ public class Machine : MonoBehaviour, IInteractable
             currentBubble = bubble;
             processingStartTime = Time.time;
             isProcessing = true;
+            soundPlayed = false;
         }
     }
 
     public bool HasBubble()
     {
-        return !!currentBubble;
+        return currentBubble != null;
     }
     
     public float GetProcessingProgress()
@@ -69,6 +80,7 @@ public class Machine : MonoBehaviour, IInteractable
                 var machineBubble = currentBubble;
                 currentBubble = null;
                 isProcessing = false;
+                soundPlayed = true;
                 bubbleManagerScript.QueueDestroy(machineBubble.GetComponent<Bubble>());
             } else {
                 Debug.Log("Player has Bubble and Machine is empty!");
@@ -82,6 +94,7 @@ public class Machine : MonoBehaviour, IInteractable
             if (HasBubble()) {
                 Debug.Log("Machine has bubble, player wants to carry!");
                 isProcessing = false;
+                soundPlayed = true;
                 player.SetBubble(currentBubble);
                 currentBubble = null;
                 return true;
