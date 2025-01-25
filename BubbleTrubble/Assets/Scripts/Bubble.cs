@@ -3,10 +3,13 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     private BubbleColor bubbleColor;
+
+    private MultiAudioSourcePlayer soundPlayer = null;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        soundPlayer = GetComponent<MultiAudioSourcePlayer>();
         bubbleColor = BubbleColor.White;
         UpdateComponentColor();
     }
@@ -30,72 +33,27 @@ public class Bubble : MonoBehaviour
 
     public void MixWithColor(BubbleColor color)
     {
-        if (color == BubbleColor.White || color == bubbleColor)
+        if (color == bubbleColor)
         {
             return;
         }
 
-        if (color == BubbleColor.Black || color == BubbleColor.Brown)
+        if (color == BubbleColor.Black || color == BubbleColor.Brown || color == BubbleColor.White)
         {
             bubbleColor = color;
+            PlayColorizeSound();
             UpdateComponentColor();
             return;
         }
 
-        switch (bubbleColor)
-        {
-            case BubbleColor.White:
-                bubbleColor = color;
-                break;
-            case BubbleColor.Red:
-                if (color == BubbleColor.Yellow) {
-                    bubbleColor = BubbleColor.Orange;
-                } else if (color == BubbleColor.Blue) {
-                    bubbleColor = BubbleColor.Purple;
-                } else if (color == BubbleColor.Orange || color == BubbleColor.Purple) {
-                } else {
-                    bubbleColor = BubbleColor.Brown;
-                }
-                break;
-            case BubbleColor.Yellow:
-                if (color == BubbleColor.Red) {
-                    bubbleColor = BubbleColor.Orange;
-                } else if (color == BubbleColor.Blue) {
-                    bubbleColor = BubbleColor.Green;
-                } else if (color == BubbleColor.Orange || color == BubbleColor.Green) {
-                } else {
-                    bubbleColor = BubbleColor.Brown;
-                }
-                break;
-            case BubbleColor.Blue:
-                if (color == BubbleColor.Red) {
-                    bubbleColor = BubbleColor.Purple;
-                } else if (color == BubbleColor.Yellow) {
-                    bubbleColor = BubbleColor.Green;
-                } else if (color == BubbleColor.Purple || color == BubbleColor.Green) {
-                } else {
-                    bubbleColor = BubbleColor.Brown;
-                }
-                break;
-            case BubbleColor.Orange:
-                if (color == BubbleColor.Red || color == BubbleColor.Yellow) {
-                } else {
-                    bubbleColor = BubbleColor.Brown;
-                }
-                break;
-            case BubbleColor.Green:
-                if (color == BubbleColor.Blue || color == BubbleColor.Yellow) {
-                } else {
-                    bubbleColor = BubbleColor.Brown;
-                }
-                break;
-            case BubbleColor.Purple:
-                if (color == BubbleColor.Red || color == BubbleColor.Blue) {
-                } else {
-                    bubbleColor = BubbleColor.Brown;
-                }
-                break;
+        if ((bubbleColor & color) == 0) {
+            bubbleColor = bubbleColor | color;
         }
+        else {
+            bubbleColor = bubbleColor & color;
+        }
+        
+        PlayColorizeSound();
         UpdateComponentColor();
     }
 
@@ -147,5 +105,11 @@ public class Bubble : MonoBehaviour
         {
             Debug.LogWarning("No Renderer found on the GameObject!");
         }
+    }
+    
+    private void PlayColorizeSound()
+    {
+        soundPlayer = GetComponent<MultiAudioSourcePlayer>();
+        soundPlayer.PlaySound(0);
     }
 }

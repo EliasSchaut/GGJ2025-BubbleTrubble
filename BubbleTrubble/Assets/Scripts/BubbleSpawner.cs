@@ -4,13 +4,16 @@ using UnityEngine.Serialization;
 public class BubbleSpawner : MonoBehaviour
 {
     
-    [SerializeField] private int spawnRate = 1;
+    [SerializeField] private float spawnRate = 1.0f;
     [SerializeField] private GameObject bubble;
     [SerializeField] private GameObject bubbleSpawnMarker;
     private double spawnCounter;
     
+    private MultiAudioSourcePlayer soundPlayer = null;
+    
     void Start()
     {
+        soundPlayer = GetComponent<MultiAudioSourcePlayer>();
         spawnCounter = 0;
     }
 
@@ -19,7 +22,7 @@ public class BubbleSpawner : MonoBehaviour
         spawnCounter += Time.deltaTime;
         if (spawnCounter >= spawnRate)
         {
-            spawnCounter = 0;
+            spawnCounter -= spawnRate;
             SpawnBubble();
         }
     }
@@ -27,5 +30,6 @@ public class BubbleSpawner : MonoBehaviour
     void SpawnBubble()
     {
         Instantiate(bubble, bubbleSpawnMarker.transform);
+        soundPlayer.PlaySound(0);
     }
 }
