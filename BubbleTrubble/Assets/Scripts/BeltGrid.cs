@@ -121,8 +121,8 @@ public class BeltGrid : MonoBehaviour
         Bubble? collidingBubble = GetCollidingBubble(bubble);
         if (collidingBubble != null)
         {
-            bubbleManagerScript.Destroy(collidingBubble);
-            bubbleManagerScript.Destroy(bubble);
+            bubbleManagerScript.QueueDestroy(collidingBubble);
+            bubbleManagerScript.QueueDestroy(bubble);
             return true;
         }
 
@@ -189,8 +189,8 @@ public class BeltGrid : MonoBehaviour
         if (bubbleManagerScript.HasBubbleOnSink())
         {
             Bubble bubbleOnSink = bubbleManagerScript.PopBubbleOnSink()!;
-            bubbleManagerScript.Destroy(bubbleOnSink);
-            bubbleManagerScript.Destroy(bubble);
+            bubbleManagerScript.QueueDestroy(bubbleOnSink);
+            bubbleManagerScript.QueueDestroy(bubble);
         }
         else
         {

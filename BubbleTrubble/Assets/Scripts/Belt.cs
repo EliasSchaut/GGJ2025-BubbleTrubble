@@ -17,10 +17,11 @@ public class Belt : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
+        Debug.Log("interacted with belt " + gridPosition);
         if (!player.HoldsBubble()) return;
         GameObject bubble = player.GetBubble();
-        player.SetBubble(null);
         Bubble bubbleComponent = bubble.GetComponent<Bubble>();
+        player.SetBubble(null);
         if (beltGrid.DestroyIfCollidingBubbles(bubbleComponent)) return;
         
         PlaceBubbleOnBeld(bubbleComponent);
