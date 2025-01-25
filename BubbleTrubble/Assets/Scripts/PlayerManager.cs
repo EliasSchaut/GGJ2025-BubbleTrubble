@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour
                 _players.Add(player);
                 
                 activePlayers++;
+                GameManager.Instance.PlayerJoined(activePlayers);
                 Debug.Log("Player " + activePlayers + " joined!");
             }
         }
