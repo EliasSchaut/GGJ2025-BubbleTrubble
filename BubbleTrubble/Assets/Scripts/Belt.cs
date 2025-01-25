@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Belt : MonoBehaviour, IBelt
+public class Belt : MonoBehaviour
 {
     void Update()
     {
