@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private Vector2 inputVector = Vector2.zero;
+    private GameObject bubbleManager;
 
     private bool _isActive = false;
     private bool _inTurret = false;
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour
 
     public void SetInTurret(TurretController turret, TurretDoor turretDoor)
     {
+        DropBubbleAndDestroy();
         this.turret = turret;
         this.turretDoor = turretDoor;
         _inTurret = true;
@@ -118,6 +120,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void DropBubbleAndDestroy()
+    {
+        if (_holdsBubble) {
+            _holdsBubble = false;
+            animator.SetTrigger("bubble_drop");
+            bubbleManager.GetComponent<BubbleManager>().DestroyBubble(bubbleObject.GetComponent<Bubble>());
+            bubbleObject = null;
+        }
+    }
+
     public GameObject GetBubble()
     {
         return bubbleObject;
@@ -150,6 +162,10 @@ public class Player : MonoBehaviour
                 var interacted = interactableObject.GetComponent<IInteractable>().Interact(this);
                 if (interacted) return;
             }
+        }
+
+        if (_holdsBubble) {
+            DropBubbleAndDestroy();
         }
     }
 
@@ -225,5 +241,10 @@ public class Player : MonoBehaviour
                 //animator.SetBool("Walking", false);
             }
         }
+    }
+
+    public void SetBubbleManager(GameObject manager)
+    {
+        this.bubbleManager = manager;
     }
 }
