@@ -36,7 +36,10 @@ public class Player : MonoBehaviour
     {
         if (!_inTurret && _isActive)
         {
+
+            
             moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+            
             rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
         }
     }
