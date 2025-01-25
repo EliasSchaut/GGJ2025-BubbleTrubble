@@ -119,9 +119,10 @@ public class Bubble : MonoBehaviour, IInteractable
         return beltIndex;
     }
 
-    public void Interact(Player player)
+    public bool Interact(Player player)
     {
         player.SetBubble(gameObject);
+        return true;
     }
     
     public void SetBubbleManager(BubbleManager bubbleManager)

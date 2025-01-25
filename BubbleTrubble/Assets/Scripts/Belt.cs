@@ -15,15 +15,16 @@ public class Belt : MonoBehaviour, IInteractable
     private Vector2Int gridPosition;
     private int segmentIndex;
 
-    public void Interact(Player player)
+    public bool Interact(Player player)
     {
-        if (!player.HoldsBubble()) return;
+        if (!player.HoldsBubble()) return false;
         GameObject bubble = player.GetBubble();
         player.SetBubble(null);
         Bubble bubbleComponent = bubble.GetComponent<Bubble>();
-        if (beltGrid.DestroyIfCollidingBubbles(bubbleComponent)) return;
+        if (beltGrid.DestroyIfCollidingBubbles(bubbleComponent)) return true;
         
         PlaceBubbleOnBeld(bubbleComponent);
+        return true;
     }
     
     public void SetGridPosition(Vector2Int gridPosition)

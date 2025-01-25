@@ -57,7 +57,7 @@ public class Machine : MonoBehaviour, IInteractable
         return Mathf.Clamp01((Time.time - processingStartTime) / processingTime);
     }
 
-    public void Interact(Player player)
+    public bool Interact(Player player)
     {
         if (player.HoldsBubble()) {
             if (HasBubble()) {
@@ -77,13 +77,16 @@ public class Machine : MonoBehaviour, IInteractable
                 PutBubble(bubble);
                 player.SetBubble(null);
             }
+            return true;
         } else {
             if (HasBubble()) {
                 Debug.Log("Machine has bubble, player wants to carry!");
                 isProcessing = false;
                 player.SetBubble(currentBubble);
                 currentBubble = null;
+                return true;
             }
         }
+        return false;
     }
 }

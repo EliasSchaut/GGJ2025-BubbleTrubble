@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Turret : MonoBehaviour, IInteractable
+public class Turret : MonoBehaviour
 {
     [SerializeField] private Transform platform;
     [SerializeField] private Transform ball;
@@ -78,8 +78,4 @@ public class Turret : MonoBehaviour, IInteractable
 
     public bool CanAddAmmo => ammo.HasCapacity;
     
-    public void Interact(Player player)
-    {
-        player.SetInTurret(true);
-    }
 }
