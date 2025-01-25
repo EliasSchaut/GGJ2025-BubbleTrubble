@@ -50,5 +50,10 @@ public class TurretController : MonoBehaviour
         if (keyboard.mKey.isPressed) {
             turret.SelectAmmoSlot(2);
         }
+        
+        if (keyboard.eKey.wasPressedThisFrame)
+        {
+            turret.ToggleOpenForAmmo();
+        }
     }
 }

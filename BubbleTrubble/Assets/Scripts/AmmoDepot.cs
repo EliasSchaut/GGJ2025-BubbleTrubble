@@ -9,7 +9,9 @@ public class AmmoDepot : MonoBehaviour
     [SerializeField] private bool cheatMode;
     [SerializeField] private GameObject cheatAmmoPrefab;
     
-    private int currentAmmoIndex = 0;
+    private int currentAmmoIndex;
+    
+    public bool IsOpenForAmmo { get; set; }
     
     private void Start()
     {

@@ -9,7 +9,13 @@ public class Turret : MonoBehaviour, IInteractable
     [SerializeField] private AmmoDepot ammo;
     
     [SerializeField] private GameObject projectile;
-    
+
+    public bool IsOpenForAmmo
+    {
+        get => ammo.IsOpenForAmmo;
+        set => ammo.IsOpenForAmmo = value;
+    }
+
     public void ChangeAzimuth(float angle)
     {
         float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(platform.localEulerAngles.y + angle), min: -90f, max: 90f);
@@ -35,6 +41,11 @@ public class Turret : MonoBehaviour, IInteractable
         Projectile p = shot.GetComponent<Projectile>();
         
         p.Initialize(color);
+    }
+    
+    public void ToggleOpenForAmmo()
+    {
+        IsOpenForAmmo = !IsOpenForAmmo;
     }
 
     public void SelectAmmoSlot(int ammoSlot)
