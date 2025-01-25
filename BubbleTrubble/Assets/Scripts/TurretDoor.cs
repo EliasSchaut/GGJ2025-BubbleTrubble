@@ -6,13 +6,15 @@ public class TurretDoor : MonoBehaviour, IInteractable
    
     private Player _player;
     
-    public void Interact(Player player)
+    public bool Interact(Player player)
     {
         if (_player != null)
-            return;
+            return false;
         
         player.SetInTurret(_controller, this);
         _player = player;
+        
+        return true;
     }
 
     public void Leave()

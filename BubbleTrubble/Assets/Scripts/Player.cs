@@ -166,6 +166,14 @@ public class Player : MonoBehaviour
             turret.Fire();
         }
     }
+
+    public void OnExit()
+    {
+        if (turret != null)
+        {
+            LeaveTurret();
+        }
+    }
     
     public void OnMove(InputAction.CallbackContext context)
     {
