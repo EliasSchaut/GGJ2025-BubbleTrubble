@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     private GameObject bubbleObject;
 
     private float interactableRange = 3f;
+
+    private float lastInteractTime;
+
+    private float interactableInhibitTime = 0.2f;
     
     //private CustomInput input = null;
     
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        lastInteractTime = 0;
     }
 
     // Update is called once per frame
@@ -36,8 +41,6 @@ public class Player : MonoBehaviour
     {
         if (!_inTurret && _isActive)
         {
-
-            
             moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
             
             rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
@@ -98,6 +101,8 @@ public class Player : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext context)
     {
         Debug.Log("Interact!");
+
+        if (Time.time - lastInteractTime < interactableInhibitTime) return;
         
         GameObject[] interactableObjects = GameObject.FindGameObjectsWithTag("Interactable");
         foreach (GameObject interactableObject in interactableObjects)
@@ -111,12 +116,5 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
-    
-    
-    
-    
-
-    
 
 }
