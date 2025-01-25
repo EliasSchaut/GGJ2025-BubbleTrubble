@@ -715,7 +715,7 @@ MonoBehaviour:
   - {x: -8, y: -6}
   - {x: 0, y: -6}
   - {x: 0, y: -10}
-  bubbleManager: {fileID: 0}
+  bubbleManager: {fileID: 1702489965}
   beltPrefab: {fileID: 3966274438142355409, guid: e16ebe5828c5c7b4d8f65f232ed1367c, type: 3}
   bubbleDispenserPrefab: {fileID: 3966274438142355409, guid: fa5e3fd94c8dd9a44aa0475013e402e1, type: 3}
   bubbleSinkPrefab: {fileID: 3966274438142355409, guid: c0e5272b7054b914984f7ecf9c9cb753, type: 3}
@@ -793,6 +793,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
+--- !u!1 &1702489965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3827918860554217308, guid: 14f02f9faa3a3d94d9c4f77bee1ab084, type: 3}
+  m_PrefabInstance: {fileID: 5418799033327421232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1776642753
 PrefabInstance:
   m_ObjectHideFlags: 0
