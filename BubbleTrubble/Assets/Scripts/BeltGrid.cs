@@ -80,7 +80,7 @@ public class BeltGrid : MonoBehaviour
             {
                 if (IsLastSegment(bubbleSegment))
                 {
-                    bubbleManager.QueueDestroy(bubble);
+                    bubble.SetState(BubbleState.OnSink);
                     continue;
                 }
 

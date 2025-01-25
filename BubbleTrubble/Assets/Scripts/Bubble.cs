@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,7 +8,8 @@ public enum BubbleState
     CarriedByPlayer,
     OnMachine,
     MovingToTurret,
-    OnTurret
+    OnTurret,
+    OnSink,
 }
 
 public class Bubble : MonoBehaviour, IInteractable
@@ -24,14 +26,12 @@ public class Bubble : MonoBehaviour, IInteractable
     
     private int beltIndex = 0;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
         BubbleColors.SetObjectColor(gameObject, bubbleColor);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -119,5 +119,10 @@ public class Bubble : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         player.SetBubble(gameObject);
+    }
+
+    void OnCollisionEnter(GameObject bubble)
+    {
+        
     }
 }
