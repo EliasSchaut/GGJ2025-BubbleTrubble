@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -95,7 +96,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void PlayerJoined(int playerNumber)
