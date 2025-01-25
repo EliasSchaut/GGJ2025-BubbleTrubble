@@ -148,13 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f276564d16b2245afa539091b5ee99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beltGrid:
+  beltCorners:
   - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: 1, y: 6}
-  - {x: 8, y: 6}
+  - {x: 0, y: 5}
+  - {x: 8, y: 5}
+  - {x: 8, y: 16}
   belt: {fileID: 3966274438142355409, guid: e16ebe5828c5c7b4d8f65f232ed1367c, type: 3}
-  bubbleSpawner: {fileID: 3966274438142355409, guid: fa5e3fd94c8dd9a44aa0475013e402e1, type: 3}
+  bubbleDispenser: {fileID: 3966274438142355409, guid: fa5e3fd94c8dd9a44aa0475013e402e1, type: 3}
 --- !u!4 &1329874649
 Transform:
   m_ObjectHideFlags: 0
