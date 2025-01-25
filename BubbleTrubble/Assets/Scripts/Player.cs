@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     private float interactableRange = 3f;
     
+    [SerializeField]private Animator animator;
+    
     //private CustomInput input = null;
     
     
@@ -34,14 +36,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!_inTurret && _isActive)
-        {
-
-            
-            moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
-            
-            rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
-        }
+        Move();
     }
     
     public void OnMove(InputAction.CallbackContext context)
@@ -106,6 +101,28 @@ public class Player : MonoBehaviour
             {
                 interactableObject.GetComponent<IInteractable>().Interact(this);
                 return;
+            }
+        }
+    }
+
+    public void Move()
+    {
+        if (!_inTurret && _isActive)
+        {
+            moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+            moveDirection.Normalize();
+
+            rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
+                
+            // Animation
+            if (moveDirection != Vector3.zero)
+            {
+                animator.SetBool("Walking", true);
+                rigidbody.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
+            }
+            else
+            {
+                animator.SetBool("Walking", false);
             }
         }
     }
