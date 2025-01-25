@@ -27,9 +27,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         //Movement();
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-        moveDirection = new Vector3(moveX, 0, moveZ).normalized;
+        //float moveX = Input.GetAxis("Horizontal");
+        //float moveZ = Input.GetAxis("Vertical");
+        //moveDirection = new Vector3(moveX, 0, moveZ).normalized;
+        moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
         
         rigidbody.MovePosition(rigidbody.position + moveSpeed * Time.deltaTime * moveDirection);
     }
@@ -40,6 +41,11 @@ public class Player : MonoBehaviour
         moveDirection += inputVector.y * _rotatedForward;
 
         rigidbody.MovePosition(rigidbody.position + moveDirection.normalized * (moveSpeed * Time.deltaTime));
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        inputVector = context.ReadValue<Vector2>();
     }
     
 
