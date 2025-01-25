@@ -1,45 +1,30 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class BubbleDispenser : MonoBehaviour, IBelt
+public class BubbleDispenser : MonoBehaviour
 {
-    
-    [SerializeField] private float spawnRate = 1.0f;
-    [SerializeField] private GameObject bubble;
     [SerializeField] private GameObject bubbleSpawnMarker;
-    private double spawnCounter;
-    
+    [SerializeField] private GameObject bubblePrefab;
     private MultiAudioSourcePlayer soundPlayer = null;
     
     void Start()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
-        spawnCounter = 0;
     }
-
-    void Update()
+    
+    public GameObject SpawnBubble()
     {
-        IBelt self = this;
-        self.BeldUpdate();
-        
-        spawnCounter += Time.deltaTime;
-        if (!self.IsOccupied && spawnCounter >= spawnRate)
-        {
-            spawnCounter -= spawnRate;
-            SpawnBubble();
-        }
-    }
-
-    void SpawnBubble()
-    {
-        Instantiate(bubble, bubbleSpawnMarker.transform);
+        GameObject bubble = Instantiate(bubblePrefab, GetSpawnPoint(), Quaternion.identity);
+        Bubble bubbleComponent = bubble.GetComponent<Bubble>();
+        bubbleComponent.SetState(BubbleState.OnBelt);
+        bubbleComponent.SetBeltIndex(0);
         soundPlayer.PlaySound(0);
+        return bubble;
     }
-
-    bool IBelt.IsOccupied { get; set; } = false;
-    IBelt IBelt.NextBelt { get; set; }
-    GameObject IBelt.Bubble { get; set; }
-    float IBelt.MovementSpeed { get; set; } = 1.0f;
-    Vector2 IBelt.MovementDirection { get; set; }
-    Vector2 IBelt.Position => transform.position;
+    
+    
+    public Vector3 GetSpawnPoint()
+    {
+        return bubbleSpawnMarker.transform.position;
+    }
 }
