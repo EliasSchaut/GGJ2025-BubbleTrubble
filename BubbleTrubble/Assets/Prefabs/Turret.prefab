@@ -998,6 +998,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1831486995263857739}
     m_Modifications:
+    - target: {fileID: -9214108254744165542, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -9214108254744165542, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -9214108254744165542, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -9214108254744165542, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1042,6 +1058,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret_Barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 4024018522024454834, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024018522024454834, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024018522024454834, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024018522024454834, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143836876718278703, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143836876718278703, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143836876718278703, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143836876718278703, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1069,11 +1117,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8069066636161276365}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 06db65097e0bc4df1aedfcf6661dcb82, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0

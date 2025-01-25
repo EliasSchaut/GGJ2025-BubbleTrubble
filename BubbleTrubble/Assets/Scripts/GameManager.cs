@@ -116,6 +116,4 @@ public class GameManager : MonoBehaviour
     {
         uiManagerGameObject.GetComponent<UIManager>().SetPlayerConnected(playerNumber);
     }
-    
-    
 }
