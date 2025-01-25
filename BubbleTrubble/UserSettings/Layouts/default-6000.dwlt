@@ -345,7 +345,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 87.50015}
     m_SelectedIDs: 4eb20000
     m_LastClickedID: 45646
-    m_ExpandedIDs: 00000000a0b00000
+    m_ExpandedIDs: 00000000b4b00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -374,7 +374,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a0b00000
+    m_ExpandedIDs: 00000000b4b00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1140,9 +1140,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 9.374325, y: 1.0160589, z: -5.7171936}
+    m_Target: {x: -2.03923, y: -5.077436, z: 7.099236}
     speed: 2
-    m_Value: {x: 0.37423098, y: -0.45868623, z: 0.3955022}
+    m_Value: {x: 9.374325, y: 1.0160589, z: -5.7171936}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1188,13 +1188,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.02301888, y: 0.9728787, z: -0.20158121, w: -0.111094505}
+    m_Target: {x: -0.007067398, y: 0.9195454, z: -0.3925775, w: -0.016553422}
     speed: 2
-    m_Value: {x: -0.2897851, y: 0.53708583, z: -0.2032772, w: -0.76568395}
+    m_Value: {x: -0.023018884, y: 0.9728788, z: -0.20158124, w: -0.11109452}
   m_Size:
-    m_Target: 16.865797
+    m_Target: 8.211226
     speed: 2
-    m_Value: 2.2484822
+    m_Value: 16.865797
   m_Ortho:
     m_Target: 0
     speed: 2
