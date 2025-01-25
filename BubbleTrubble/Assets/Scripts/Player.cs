@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
         this.turret = turret;
         this.turretDoor = turretDoor;
         _inTurret = true;
+        animator.SetTrigger("elevator_reached");
     }
 
     private void LeaveTurret()
@@ -104,9 +105,11 @@ public class Player : MonoBehaviour
             bubbleObject.GetComponent<Bubble>().SetState(BubbleState.CarriedByPlayer);
             bubble.transform.parent = transform;
             bubble.transform.localPosition = new Vector3(0, 1.5f, 0);
+            animator.SetTrigger("bubble_pickup");
         }
         else {
             _holdsBubble = false;
+            animator.SetTrigger("bubble_drop");
         }
     }
 
@@ -203,9 +206,9 @@ public class Player : MonoBehaviour
     {
         if (!_inTurret && _isActive)
         {
-            moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+            moveDirection = new Vector3(-inputVector.x, 0, -inputVector.y).normalized;
 
-            rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
+            rigidbody.MovePosition(rigidbody.position + moveSpeed * Time.deltaTime * moveDirection);
                 
             // Animation
             if (moveDirection != Vector3.zero)
