@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -10,7 +9,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Transform spawnB;
     
     [SerializeField] private float waveDuration = 5.0f;
-
+    
     private Vector3 min;
     private Vector3 max;
     
@@ -32,18 +31,21 @@ public class WaveManager : MonoBehaviour
         currentWave += 1;
         timer = 0.0f;
         
-        (int childships, int mothership) counts = GetCountsCount();
+        (int childships, int mothership) counts = GetShipsCount();
         
         for (int i = 0; i < counts.childships; i++)
         {
             Vector3 spawnPosition = GetSpawnPosition();
-            Instantiate(childships[UnityEngine.Random.Range(0, childships.Length)], spawnPosition, Quaternion.identity);
+            Instantiate(GetElement(childships), spawnPosition, Quaternion.identity);
         }
         
         for (int i = 0; i < counts.mothership; i++)
         {
             Vector3 spawnPosition = GetSpawnPosition();
-            Instantiate(motherships[UnityEngine.Random.Range(0, motherships.Length)], spawnPosition, Quaternion.identity);
+            
+            EnemyMothership mothership = Instantiate(GetElement(motherships), spawnPosition, Quaternion.identity).GetComponent<EnemyMothership>();
+            
+            mothership.Wave = currentWave;
         }
     }
 
@@ -57,7 +59,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private (int childships, int mothership) GetCountsCount()
+    private (int childships, int mothership) GetShipsCount()
     {
         return currentWave switch
         {
@@ -72,6 +74,11 @@ public class WaveManager : MonoBehaviour
 
     private Vector3 GetSpawnPosition()
     {
-        return new Vector3(UnityEngine.Random.Range(min.x, max.x), UnityEngine.Random.Range(min.y, max.y), UnityEngine.Random.Range(min.z, max.z));
+        return new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), Random.Range(min.z, max.z));
+    }
+    
+    private GameObject GetElement(GameObject[] elements)
+    {
+        return elements[Mathf.Min(Random.Range(0, elements.Length), currentWave - 1)];
     }
 }
