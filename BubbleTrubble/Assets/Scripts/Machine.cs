@@ -54,7 +54,10 @@ public class Machine : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
-        // FIXME Implement
+        if (player.HoldsBubble()) {
+            if (!)
+            
+        }
         
     }
 }
