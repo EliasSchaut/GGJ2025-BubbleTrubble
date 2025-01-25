@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526c8e4bbad48b3469f33623aeb73aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 1
-  bubble: {fileID: 3966274438142355409, guid: 6b26d979aa04d4605a140ffd0115ff7c, type: 3}
   bubbleSpawnMarker: {fileID: 8427514991452482587}
+  bubblePrefab: {fileID: 3966274438142355409, guid: 6b26d979aa04d4605a140ffd0115ff7c, type: 3}
 --- !u!82 &8124433891187877046
 AudioSource:
   m_ObjectHideFlags: 0
