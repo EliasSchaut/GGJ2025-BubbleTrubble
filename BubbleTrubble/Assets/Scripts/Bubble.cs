@@ -1,16 +1,30 @@
 using UnityEngine;
 
+public enum BubbleState
+{
+    OnBelt,
+    CarriedByPlayer,
+    OnMachine,
+    MovingToTurret,
+    OnTurret
+}
+
 public class Bubble : MonoBehaviour
 {
-    private BubbleColor bubbleColor;
+    private BubbleColor bubbleColor = BubbleColor.White;
 
     private MultiAudioSourcePlayer soundPlayer = null;
+    
+    private BubbleState currentState = BubbleState.OnBelt;
+
+    private int shots = 10;
+    
+    private int beltIndex = 0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
-        bubbleColor = BubbleColor.White;
         UpdateComponentColor();
     }
 
@@ -111,5 +125,35 @@ public class Bubble : MonoBehaviour
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
         soundPlayer.PlaySound(0);
+    }
+    
+    public void SetState(BubbleState state)
+    {
+        currentState = state;
+    }
+    
+    public BubbleState GetState()
+    {
+        return currentState;
+    }
+    
+    public void UseShot()
+    {
+        shots--;
+        if (shots <= 0)
+        {
+            Destroy(gameObject);
+            // FIXME: inform ammo demo that the bubble is destroyed
+        }
+    }
+    
+    public void SetBeltIndex(int index)
+    {
+        beltIndex = index;
+    }
+    
+    public int GetBeltIndex()
+    {
+        return beltIndex;
     }
 }
