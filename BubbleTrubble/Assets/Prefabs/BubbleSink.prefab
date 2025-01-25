@@ -47,9 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526c8e4bbad48b3469f33623aeb73aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 1
-  bubble: {fileID: 3966274438142355409, guid: 6b26d979aa04d4605a140ffd0115ff7c, type: 3}
   bubbleSpawnMarker: {fileID: 0}
+  bubblePrefab: {fileID: 0}
 --- !u!82 &8124433891187877046
 AudioSource:
   m_ObjectHideFlags: 0
@@ -187,8 +186,8 @@ Transform:
   m_GameObject: {fileID: 5568001802292102308}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7339600845872066943}
