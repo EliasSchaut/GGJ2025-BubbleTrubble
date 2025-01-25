@@ -12,6 +12,8 @@ public class Turret : MonoBehaviour
     
     [SerializeField] private float cooldown = 0.25f;
     [SerializeField] private float spread = 5.0f;
+    
+    [SerializeField] private Animator animator;
 
     private float timer;
 
@@ -59,6 +61,8 @@ public class Turret : MonoBehaviour
         Projectile p = shot.GetComponent<Projectile>();
         
         p.Initialize(color);
+        
+        animator.SetTrigger("Fire");
     }
     
     public void ToggleOpenForAmmo()
