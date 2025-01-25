@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
 
     private bool _isActive = false;
     private bool _inTurret = false;
+    
+    private bool _holdsBubble = false;
+    private GameObject bubbleObject;
 
     private float interactableRange = 3f;
     
@@ -63,6 +66,23 @@ public class Player : MonoBehaviour
     public void SetInTurret(bool active)
     {
         _inTurret = active;
+    }
+    
+    public bool HoldsBubble()
+    {
+        return _holdsBubble;
+    }
+
+    public void SetBubble(GameObject bubble)
+    {
+        bubbleObject = bubble;
+    }
+
+    public GameObject GetBubble()
+    {
+        GameObject bubble = bubbleObject;
+        bubbleObject = null;
+        return bubble;
     }
 
 
