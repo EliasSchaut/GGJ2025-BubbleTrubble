@@ -29,13 +29,13 @@ public class BubbleManager : MonoBehaviour
     {
         foreach (Bubble bubble in bubblesToRemove)
         {
-            Destroy(bubble);
+            DestroyBubble(bubble);
         }
 
         bubblesToRemove.Clear();
     }
     
-    void Destroy(Bubble bubble)
+    public void DestroyBubble(Bubble bubble)
     {
         bubbles.Remove(bubble);
         if (bubble.GetState() == BubbleState.OnSink)

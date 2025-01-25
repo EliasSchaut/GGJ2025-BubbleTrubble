@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
             if(!player.GetComponent<Player>().IsPlayerActive())
             {
                 player.GetComponent<Player>().SetPlayerActive(true, playerSpawns[activePlayers].transform);
+                var bubbleManager = GameObject.FindGameObjectWithTag("BubbleManager");
+                player.GetComponent<Player>().SetBubbleManager(bubbleManager);
                 _players.Add(player);
                 
                 activePlayers++;
