@@ -118,6 +118,6 @@ public class Bubble : MonoBehaviour, IInteractable
 
     public void Interact(GameObject player)
     {
-        
+        player.GetComponent<Player>().SetBubble(gameObject);
     }
 }

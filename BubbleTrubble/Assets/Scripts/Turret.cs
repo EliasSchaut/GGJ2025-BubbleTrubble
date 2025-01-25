@@ -44,6 +44,6 @@ public class Turret : MonoBehaviour, IInteractable
     
     public void Interact(GameObject player)
     {
-        
+        player.GetComponent<Player>().SetInTurret(true);
     }
 }
