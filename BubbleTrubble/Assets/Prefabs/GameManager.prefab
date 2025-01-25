@@ -43,9 +43,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4688909550849727335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bf4d2f2ce5152b449a1ee172503eb22, type: 3}
+  m_Script: {fileID: 11500000, guid: 324f54385d61f410b869da3c6f6498d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManagerGameObject: {fileID: 0}
 --- !u!114 &5371841792841358214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4688909550849727335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14d6da250884eec4190bad02bb20303e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bab221abe7767d4db566e2e5ca1c612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawns:
-  - {fileID: 0}
+  playerSpawns: []

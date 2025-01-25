@@ -12,14 +12,14 @@ public class BubbleDispenser : MonoBehaviour
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
     }
     
-    public GameObject SpawnBubble()
+    public Bubble SpawnBubble()
     {
         GameObject bubble = Instantiate(bubblePrefab, GetSpawnPoint(), Quaternion.identity);
         Bubble bubbleComponent = bubble.GetComponent<Bubble>();
         bubbleComponent.SetState(BubbleState.OnBelt);
         bubbleComponent.SetBeltIndex(0);
         soundPlayer.PlaySound(0);
-        return bubble;
+        return bubbleComponent;
     }
     
     
