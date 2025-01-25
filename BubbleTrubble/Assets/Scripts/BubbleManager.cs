@@ -19,7 +19,7 @@ public class BubbleManager : MonoBehaviour
     public void Destroy(Bubble bubble)
     {
         bubbles.Remove(bubble);
-        Destroy(bubble.gameObject);
+        bubble.DestroyBubble();
     }
 
     public void QueueDestroy(Bubble bubble)

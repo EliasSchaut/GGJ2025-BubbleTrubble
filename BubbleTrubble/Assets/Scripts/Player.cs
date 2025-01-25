@@ -76,6 +76,9 @@ public class Player : MonoBehaviour
     public void SetBubble(GameObject bubble)
     {
         bubbleObject = bubble;
+        bubbleObject.GetComponent<Bubble>().SetState(BubbleState.CarriedByPlayer);
+        bubble.transform.parent = transform;
+        bubble.transform.localPosition = new Vector3(0, 1.5f, 0);
     }
 
     public GameObject GetBubble()

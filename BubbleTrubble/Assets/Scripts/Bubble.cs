@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,11 +8,14 @@ public enum BubbleState
     CarriedByPlayer,
     OnMachine,
     MovingToTurret,
-    OnTurret
+    OnTurret,
+    OnSink,
 }
 
 public class Bubble : MonoBehaviour, IInteractable
 {
+    private BubbleManager bubbleManager;
+    
     private BubbleColor bubbleColor = BubbleColor.White;
 
     private MultiAudioSourcePlayer soundPlayer = null;
@@ -24,17 +28,10 @@ public class Bubble : MonoBehaviour, IInteractable
     
     private int beltIndex = 0;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
         BubbleColors.SetObjectColor(gameObject, bubbleColor);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     public void SetColor(BubbleColor color)
@@ -119,5 +116,17 @@ public class Bubble : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         player.SetBubble(gameObject);
+    }
+    
+    public void SetBubbleManager(BubbleManager bubbleManager)
+    {
+        this.bubbleManager = bubbleManager;
+    }
+
+    void OnCollisionEnter(Collision bubbleCollision)
+    {
+        GameObject bubble = bubbleCollision.gameObject;
+        bubbleManager.Destroy(bubble.GetComponent<Bubble>());
+        bubbleManager.Destroy(this);        
     }
 }
