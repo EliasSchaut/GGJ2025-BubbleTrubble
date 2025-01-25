@@ -55,8 +55,7 @@ public class Machine : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         if (player.HoldsBubble()) {
-            if (!)
-            
+
         }
         
     }
