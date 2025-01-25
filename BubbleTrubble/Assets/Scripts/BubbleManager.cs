@@ -27,7 +27,7 @@ public class BubbleManager : MonoBehaviour
             bubbleOnSink = null;
         }
         
-        //bubble.DestroyBubble();
+        bubble.DestroyBubble();
     }
 
     public void QueueDestroy(Bubble bubble)

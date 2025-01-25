@@ -133,6 +133,6 @@ public class Bubble : MonoBehaviour, IInteractable
     {
         GameObject bubble = bubbleCollision.gameObject;
         bubbleManager.Destroy(bubble.GetComponent<Bubble>());
-        bubbleManager.Destroy(this);        
+        bubbleManager.Destroy(this);
     }
 }
