@@ -1176,6 +1176,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4694403432790717876, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
     - {fileID: 8700725330082129686, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
+    - {fileID: -6032153759297429644, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
+    - {fileID: -6148585061576865867, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
+    - {fileID: 7960158976996931061, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
+    - {fileID: -5679941666241095196, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
@@ -1346,7 +1350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6297708458700607474, guid: 66c239bbb899993418466347aa381242, type: 3}
       propertyPath: waveDuration
-      value: 120
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7523560783916607497, guid: 66c239bbb899993418466347aa381242, type: 3}
       propertyPath: m_LocalPosition.x
