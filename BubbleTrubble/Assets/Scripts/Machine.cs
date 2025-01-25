@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Machine : MonoBehaviour
+public class Machine : MonoBehaviour, IInteractable
 {
     public BubbleColor machineColor;
     
@@ -50,5 +50,11 @@ public class Machine : MonoBehaviour
             return 0f;
         }
         return Mathf.Clamp01((Time.time - processingStartTime) / processingTime);
+    }
+
+    public void Interact(Player player)
+    {
+        // FIXME Implement
+        
     }
 }
