@@ -45,6 +45,14 @@ public class Bubble : MonoBehaviour, IInteractable
         return bubbleColor;
     }
 
+    public bool WouldChangeColor(BubbleColor color)
+    {
+        if (color == bubbleColor) {
+            return false;
+        }
+        return true;
+    }
+    
     public void MixWithColor(BubbleColor color)
     {
         if (color == bubbleColor)
@@ -55,7 +63,6 @@ public class Bubble : MonoBehaviour, IInteractable
         if (color == BubbleColor.Black || color == BubbleColor.Brown || color == BubbleColor.White)
         {
             bubbleColor = color;
-            PlayColorizeSound();
         	BubbleColors.SetObjectColor(gameObject, bubbleColor);
             return;
         }
@@ -67,11 +74,10 @@ public class Bubble : MonoBehaviour, IInteractable
             bubbleColor = bubbleColor & color;
         }
         
-        PlayColorizeSound();
         BubbleColors.SetObjectColor(gameObject, bubbleColor);
     }
 
-    private void PlayColorizeSound()
+    public void PlayColorizeSound()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
         soundPlayer.PlaySound(0);
@@ -121,8 +127,11 @@ public class Bubble : MonoBehaviour, IInteractable
 
     public bool Interact(Player player)
     {
-        player.SetBubble(gameObject);
-        return true;
+        if (currentState == BubbleState.OnBelt) {
+            player.SetBubble(gameObject);
+            return true;
+        }
+        return false;
     }
     
     public void SetBubbleManager(BubbleManager bubbleManager)
