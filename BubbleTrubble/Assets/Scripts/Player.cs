@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     
     private Vector3 _rotatedForward = Vector3.forward;
     private Vector3 _rotatedRight = Vector3.right;
+
+    private bool _isActive = false;
+    private bool _inTurret = false;
     
     //private CustomInput input = null;
     
@@ -26,22 +29,45 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Movement();
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-        moveDirection = new Vector3(moveX, 0, moveZ).normalized;
-        
-        rigidbody.MovePosition(rigidbody.position + moveSpeed * Time.deltaTime * moveDirection);
+        if (!_inTurret && _isActive)
+        {
+            moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+            rigidbody.MovePosition(rigidbody.position + moveSpeed * Time.deltaTime * moveDirection);
+        }
     }
     
-    private void Movement()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        moveDirection += inputVector.x * _rotatedRight;
-        moveDirection += inputVector.y * _rotatedForward;
+        inputVector = context.ReadValue<Vector2>();
+    }
 
-        rigidbody.MovePosition(rigidbody.position + moveDirection.normalized * (moveSpeed * Time.deltaTime));
+    public bool IsPlayerActive()
+    {
+        return _isActive;
+    }
+
+    public void SetPlayerActive(bool active, Transform spawnPoint)
+    {
+        _isActive = active;
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+    }
+
+    public bool IsInTurret()
+    {
+        return _inTurret;
+    }
+
+    public void SetInTurret(bool active)
+    {
+        _inTurret = active;
     }
     
+    
+    
+    
+    
 
+    
 
 }
