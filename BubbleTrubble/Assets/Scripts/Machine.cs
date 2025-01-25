@@ -64,12 +64,12 @@ public class Machine : MonoBehaviour, IInteractable
                 Debug.Log("Player has Bubble and Machine has bubble!");
                 // both bubbles will be destroyed
                 var playerBubble = player.GetBubble();
-                bubbleManagerScript.Destroy(playerBubble.GetComponent<Bubble>());
+                bubbleManagerScript.QueueDestroy(playerBubble.GetComponent<Bubble>());
                 player.SetBubble(null);
                 var machineBubble = currentBubble;
                 currentBubble = null;
                 isProcessing = false;
-                bubbleManagerScript.Destroy(machineBubble.GetComponent<Bubble>());
+                bubbleManagerScript.QueueDestroy(machineBubble.GetComponent<Bubble>());
             } else {
                 Debug.Log("Player has Bubble and Machine is empty!");
                 // put bubble on machine
