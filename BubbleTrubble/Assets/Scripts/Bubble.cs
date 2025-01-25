@@ -105,6 +105,12 @@ public class Bubble : MonoBehaviour, IInteractable
 
         return false;
     }
+
+    public void DestroyBubble()
+    {
+        // FIXME: play destroy sound
+        Destroy(gameObject);
+    }
     
     public void SetBeltIndex(int index)
     {
@@ -118,6 +124,8 @@ public class Bubble : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
-        player.SetBubble(gameObject);
+        if (currentState == BubbleState.OnBelt) {
+            player.SetBubble(gameObject);
+        }
     }
 }
