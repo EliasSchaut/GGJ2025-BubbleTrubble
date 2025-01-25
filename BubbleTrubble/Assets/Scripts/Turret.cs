@@ -53,8 +53,8 @@ public class Turret : MonoBehaviour, IInteractable
         ammo.SetCurrentAmmoIndex(ammoSlot);
     }
     
-    public void Interact(GameObject player)
+    public void Interact(Player player)
     {
-        player.GetComponent<Player>().SetInTurret(active: true);
+        player.SetInTurret(true);
     }
 }
