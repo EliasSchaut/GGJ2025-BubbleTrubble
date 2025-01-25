@@ -1,7 +1,10 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BeltGrid : MonoBehaviour
 {
@@ -111,6 +114,35 @@ public class BeltGrid : MonoBehaviour
         Bubble newBubble = bubbleDispenserComponent.SpawnBubble();
         newBubble.SetBubbleManager(bubbleManagerScript);
         bubbleManagerScript.Add(newBubble);
+    }
+
+    public bool DestroyIfCollidingBubbles(Bubble bubble)
+    {
+        Bubble? collidingBubble = GetCollidingBubble(bubble);
+        if (collidingBubble != null)
+        {
+            bubbleManagerScript.Destroy(collidingBubble);
+            bubbleManagerScript.Destroy(bubble);
+            return true;
+        }
+
+        return false;
+    }
+    
+    public Bubble? GetCollidingBubble(Bubble bubble)
+    {
+        Vector3 bubblePosition = bubble.transform.position;
+        float bubbleRadius = 1f;
+        foreach (Bubble otherBubble in bubbleManagerScript.GetAll())
+        {
+            if (bubble == otherBubble) continue;
+            if (Vector3.Distance(bubblePosition, otherBubble.transform.position) < bubbleRadius * 2)
+            {
+                return otherBubble;
+            }
+        }
+
+        return null;
     }
 
     public GameObject InstantiateOnGrid(GameObject prefab, Vector2Int position)

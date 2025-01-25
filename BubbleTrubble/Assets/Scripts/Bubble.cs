@@ -128,11 +128,4 @@ public class Bubble : MonoBehaviour, IInteractable
     {
         this.bubbleManager = bubbleManager;
     }
-
-    void OnCollisionEnter(Collision bubbleCollision)
-    {
-        GameObject bubble = bubbleCollision.gameObject;
-        bubbleManager.Destroy(bubble.GetComponent<Bubble>());
-        bubbleManager.Destroy(this);
-    }
 }
