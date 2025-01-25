@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     private int _lives = 3;
     private bool _isPaused = false;
+
+    private int totalScore = 0;
+    private int currentWave = 0;
     
     public static GameManager Instance
     {
@@ -77,7 +81,14 @@ public class GameManager : MonoBehaviour
     
     public void EnemyKilled(int enemySelfWorth)
     {
-        
+        totalScore += enemySelfWorth;
+        uiManagerGameObject.GetComponent<UIManager>().SetScore(totalScore);
+    }
+
+    public void SetWave(int wave)
+    {
+        currentWave = wave;
+        uiManagerGameObject.GetComponent<UIManager>().SetWave(currentWave);
     }
     
     public void TogglePause()
@@ -104,5 +115,6 @@ public class GameManager : MonoBehaviour
     {
         uiManagerGameObject.GetComponent<UIManager>().SetPlayerConnected(playerNumber);
     }
+    
     
 }
