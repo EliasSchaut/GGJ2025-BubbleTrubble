@@ -4,16 +4,21 @@ public class Machine : MonoBehaviour, IInteractable
 {
     public BubbleColor machineColor;
     
-    private Bubble currentBubble = null;
+    private GameObject currentBubble = null;
     
     private bool isProcessing = false;
     
     private float processingStartTime = 0f;
     
     private float processingTime = 2f;
+    
+    [SerializeField] private GameObject bubbleManager;
+    
+    private BubbleManager bubbleManagerScript;
 
     private void Start()
     {
+        bubbleManagerScript = bubbleManager.GetComponent<BubbleManager>();
     }
     
     private void Update()
@@ -21,15 +26,15 @@ public class Machine : MonoBehaviour, IInteractable
         if (currentBubble && isProcessing && (Time.time - processingStartTime) > processingTime)
         {
             isProcessing = false;
-            currentBubble.MixWithColor(machineColor);
+            currentBubble.GetComponent<Bubble>().MixWithColor(machineColor);
         }
     }
 
-    public void PutBubble(Bubble bubble)
+    public void PutBubble(GameObject bubble)
     {
         if (!HasBubble())
         {
-            bubble.SetState(BubbleState.OnMachine);
+            bubble.GetComponent<Bubble>().SetState(BubbleState.OnMachine);
             bubble.transform.parent = transform;
             bubble.transform.localPosition = new Vector3(0, 0.5f, 0);
             currentBubble = bubble;
@@ -55,8 +60,27 @@ public class Machine : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         if (player.HoldsBubble()) {
-
+            if (HasBubble()) {
+                // both bubbles will be destroyed
+                var playerBubble = player.GetBubble();
+                bubbleManagerScript.Destroy(playerBubble.GetComponent<Bubble>());
+                player.SetBubble(null);
+                var machineBubble = currentBubble;
+                currentBubble = null;
+                isProcessing = false;
+                bubbleManagerScript.Destroy(machineBubble.GetComponent<Bubble>());
+            } else {
+                // put bubble on machine
+                var bubble = player.GetBubble();
+                PutBubble(bubble);
+                player.SetBubble(null);
+            }
+        } else {
+            if (HasBubble()) {
+                isProcessing = false;
+                player.SetBubble(currentBubble);
+                currentBubble = null;
+            }
         }
-        
     }
 }
