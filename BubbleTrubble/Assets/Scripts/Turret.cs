@@ -13,7 +13,7 @@ public class Turret : MonoBehaviour, IInteractable
     public void ChangeAzimuth(float angle)
     {
         float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(platform.localEulerAngles.y + angle), min: -90f, max: 90f);
-            
+        
         platform.localRotation = Quaternion.Euler(x: 0f, newAngle, z: 0f);
     }
     
