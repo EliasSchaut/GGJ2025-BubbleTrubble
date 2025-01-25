@@ -72,9 +72,10 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         _lives--;
+        uiManagerGameObject.GetComponent<UIManager>().SetLives(_lives);
+
         if (_lives <= 0)
         {
-            uiManagerGameObject.GetComponent<UIManager>().SetLives(_lives);
             OnGameOver();
         }
     }
