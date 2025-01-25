@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
     
-    private GameObject[] _players; 
+    private List<GameObject> _players = new List<GameObject>();
     [SerializeField] private GameObject[] playerSpawns;
     private int activePlayers = 0;
     
@@ -23,7 +25,17 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerJoin()
     {
-        Debug.Log("new player joined");
-        activePlayers++;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            if(!player.GetComponent<Player>().IsPlayerActive())
+            {
+                player.GetComponent<Player>().SetPlayerActive(true, playerSpawns[activePlayers].transform);
+                _players.Add(player);
+                
+                activePlayers++;
+                Debug.Log("Player " + activePlayers + " joined!");
+            }
+        }
     }
 }
