@@ -56,7 +56,7 @@ public class BeltGrid : MonoBehaviour
         if (spawnCounter >= bubbleSpawnRate)
         {
             spawnCounter -= bubbleSpawnRate;
-            SpawnBubble();
+            bubbleDispenserComponent.SpawnBubble();
         }
     }
 
@@ -80,11 +80,6 @@ public class BeltGrid : MonoBehaviour
                 bubble.SetBeltIndex(bubbleSegment + 1);
             }
         }
-    }
-
-    void SpawnBubble()
-    {
-        bubbleDispenserComponent.SpawnBubble(bubblePrefab);
     }
 
     void MoveBubble(Bubble bubble, Vector2Int movementDirection)
