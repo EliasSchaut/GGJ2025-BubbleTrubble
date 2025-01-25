@@ -37,7 +37,7 @@ public class Turret : MonoBehaviour
     
     public void ChangeElevation(float angle)
     {
-        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(ball.localEulerAngles.x - angle * 0.1f), min: -90f, max: 0f);
+        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(ball.localEulerAngles.x - angle * 0.1f), min: 0f, max: 90f);
         
         ball.localRotation = Quaternion.Euler(newAngle, y: 0f, z: 0f);
     }
