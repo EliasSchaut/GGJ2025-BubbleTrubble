@@ -3,9 +3,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    private bool _isPaused = false;
+    
+    [SerializeField] private GameObject uiManagerGameObject;
 
     private int _lives = 3;
+    private bool _isPaused = false;
     
     public static GameManager Instance
     {
@@ -37,18 +39,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     public void ExitGame()
     {
@@ -65,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         
         Time.timeScale = 0.01f;
-        //OpenDeathUI();
+        uiManagerGameObject.GetComponent<UIManager>().ActivateGameOverPanel();
     }
 
     public void OnWin()
@@ -79,6 +69,7 @@ public class GameManager : MonoBehaviour
         _lives--;
         if (_lives <= 0)
         {
+            uiManagerGameObject.GetComponent<UIManager>().SetLives(_lives);
             OnGameOver();
         }
     }
@@ -96,9 +87,13 @@ public class GameManager : MonoBehaviour
         else
         {
             _isPaused = true;
-            Time.timeScale = 0.01f;
+            Time.timeScale = 0.0f;
         }
+    }
 
+    public void RestartGame()
+    {
+        
     }
     
 }
