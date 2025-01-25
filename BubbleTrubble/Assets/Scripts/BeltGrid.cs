@@ -104,7 +104,7 @@ public class BeltGrid : MonoBehaviour
     {
         bubble.transform.position = new Vector3(
             gridPosition.x,
-            bubble.transform.position.y,
+            0.5f,
             gridPosition.y
         );
     }
