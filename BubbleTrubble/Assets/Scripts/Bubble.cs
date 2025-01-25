@@ -31,11 +31,6 @@ public class Bubble : MonoBehaviour, IInteractable
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
         BubbleColors.SetObjectColor(gameObject, bubbleColor);
     }
-
-    void Update()
-    {
-        
-    }
     
     public void SetColor(BubbleColor color)
     {
@@ -131,6 +126,6 @@ public class Bubble : MonoBehaviour, IInteractable
 
     void OnCollisionEnter(GameObject bubble)
     {
-        
+        throw new System.NotImplementedException();
     }
 }
