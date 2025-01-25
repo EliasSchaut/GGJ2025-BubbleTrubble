@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3747723564910248444}
   - component: {fileID: 485579877607192750}
   m_Layer: 6
-  m_Name: 'Enemy '
+  m_Name: Enemy 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,10 @@ MonoBehaviour:
   - {fileID: 7588585030314787222}
   - {fileID: 310626841130275816}
   stickyPrefab: {fileID: 4503913072553502232, guid: 774c7a8af6db7884d8c53950cb13758e, type: 3}
+  speed: 1
+  swerve: 1
   selfWorth: 15
+  moveMode: 3
 --- !u!54 &485579877607192750
 Rigidbody:
   m_ObjectHideFlags: 0
