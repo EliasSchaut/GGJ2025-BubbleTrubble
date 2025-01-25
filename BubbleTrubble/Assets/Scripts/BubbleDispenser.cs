@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class BubbleSpawner : MonoBehaviour
+public class BubbleDispenser : MonoBehaviour, IBelt
 {
     
     [SerializeField] private float spawnRate = 1.0f;
@@ -19,8 +19,11 @@ public class BubbleSpawner : MonoBehaviour
 
     void Update()
     {
+        IBelt self = this;
+        self.BeldUpdate();
+        
         spawnCounter += Time.deltaTime;
-        if (spawnCounter >= spawnRate)
+        if (!self.IsOccupied && spawnCounter >= spawnRate)
         {
             spawnCounter -= spawnRate;
             SpawnBubble();
@@ -32,4 +35,11 @@ public class BubbleSpawner : MonoBehaviour
         Instantiate(bubble, bubbleSpawnMarker.transform);
         soundPlayer.PlaySound(0);
     }
+
+    bool IBelt.IsOccupied { get; set; } = false;
+    IBelt IBelt.NextBelt { get; set; }
+    GameObject IBelt.Bubble { get; set; }
+    float IBelt.MovementSpeed { get; set; } = 1.0f;
+    Vector2 IBelt.MovementDirection { get; set; }
+    Vector2 IBelt.Position => transform.position;
 }
