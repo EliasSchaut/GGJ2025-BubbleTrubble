@@ -45,7 +45,7 @@ public class Machine : MonoBehaviour, IInteractable
 
     public bool HasBubble()
     {
-        return !currentBubble;
+        return !!currentBubble;
     }
     
     public float GetProcessingProgress()
@@ -61,6 +61,7 @@ public class Machine : MonoBehaviour, IInteractable
     {
         if (player.HoldsBubble()) {
             if (HasBubble()) {
+                Debug.Log("Player has Bubble and Machine has bubble!");
                 // both bubbles will be destroyed
                 var playerBubble = player.GetBubble();
                 bubbleManagerScript.Destroy(playerBubble.GetComponent<Bubble>());
@@ -70,6 +71,7 @@ public class Machine : MonoBehaviour, IInteractable
                 isProcessing = false;
                 bubbleManagerScript.Destroy(machineBubble.GetComponent<Bubble>());
             } else {
+                Debug.Log("Player has Bubble and Machine is empty!");
                 // put bubble on machine
                 var bubble = player.GetBubble();
                 PutBubble(bubble);
@@ -77,6 +79,7 @@ public class Machine : MonoBehaviour, IInteractable
             }
         } else {
             if (HasBubble()) {
+                Debug.Log("Machine has bubble, player wants to carry!");
                 isProcessing = false;
                 player.SetBubble(currentBubble);
                 currentBubble = null;

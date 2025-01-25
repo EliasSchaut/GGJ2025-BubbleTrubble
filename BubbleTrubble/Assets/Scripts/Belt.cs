@@ -18,6 +18,7 @@ public class Belt : MonoBehaviour, IInteractable
     {
         if (!player.HoldsBubble()) return;
         GameObject bubble = player.GetBubble();
+        player.SetBubble(null);
         Bubble bubbleComponent = bubble.GetComponent<Bubble>();
         SnapBubbleToBelt(bubbleComponent);
     }

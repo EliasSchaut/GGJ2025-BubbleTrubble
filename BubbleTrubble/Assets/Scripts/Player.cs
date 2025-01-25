@@ -79,20 +79,22 @@ public class Player : MonoBehaviour
     public void SetBubble(GameObject bubble)
     {
         bubbleObject = bubble;
-        bubbleObject.GetComponent<Bubble>().SetState(BubbleState.CarriedByPlayer);
-        bubble.transform.parent = transform;
-        bubble.transform.localPosition = new Vector3(0, 1.5f, 0);
+        if (bubble != null) {
+            _holdsBubble = true;
+            bubbleObject.GetComponent<Bubble>().SetState(BubbleState.CarriedByPlayer);
+            bubble.transform.parent = transform;
+            bubble.transform.localPosition = new Vector3(0, 1.5f, 0);
+        }
+        else {
+            _holdsBubble = false;
+        }
     }
 
     public GameObject GetBubble()
     {
-        GameObject bubble = bubbleObject;
-        bubbleObject = null;
-        return bubble;
+        return bubbleObject;
     }
-
-
-
+    
     public void OnInteract(InputAction.CallbackContext context)
     {
         Debug.Log("Interact!");
