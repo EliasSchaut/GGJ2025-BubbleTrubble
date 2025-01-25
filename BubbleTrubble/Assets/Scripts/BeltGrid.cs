@@ -40,7 +40,11 @@ public class BeltGrid : MonoBehaviour
             segmentMovementDirection.Add(step);
             while (position != end)
             {
-                InstantiateOnGrid(beltPrefab, position);
+                GameObject belt = InstantiateOnGrid(beltPrefab, position);
+                Belt beltComponent = belt.GetComponent<Belt>();
+                beltComponent.SetBeltGrid(this);
+                beltComponent.SetGridPosition(position);
+                beltComponent.SetSegmentIndex(i - 1);
                 position += step;
             }
         }
@@ -80,7 +84,7 @@ public class BeltGrid : MonoBehaviour
                     continue;
                 }
 
-                SnapBubbleToCorner(bubble, nextCorner);
+                SnapBubbleToGrid(bubble.gameObject, nextCorner);
                 bubble.SetBeltIndex(bubbleSegment + 1);
             }
         }
@@ -93,12 +97,12 @@ public class BeltGrid : MonoBehaviour
         bubble.transform.position += GridVectorToWorld(Time.deltaTime * beltSpeed * (Vector2)movementDirection);
     }
 
-    void SnapBubbleToCorner(Bubble bubble, Vector2Int corner)
+    public void SnapBubbleToGrid(GameObject bubble, Vector2Int gridPosition)
     {
         bubble.transform.position = new Vector3(
-            corner.x,
+            gridPosition.x,
             bubble.transform.position.y,
-            corner.y
+            gridPosition.y
         );
     }
 
@@ -108,33 +112,41 @@ public class BeltGrid : MonoBehaviour
         bubbleManager.Add(newBubble);
     }
 
-    GameObject InstantiateOnGrid(GameObject prefab, Vector2Int position)
+    public GameObject InstantiateOnGrid(GameObject prefab, Vector2Int position)
     {
         return Instantiate(prefab, GridVectorToWorld(position), Quaternion.identity);
     }
 
-    Vector2Int GetBeltCornerAtEndOfSegment(int segment)
+    public Vector2Int GetBeltCornerAtEndOfSegment(int segment)
     {
         return beltCorners[segment + 1];
     }
 
-    Vector3 GridVectorToWorld(Vector2 gridVector)
+    public Vector3 GridVectorToWorld(Vector2 gridVector)
     {
         return new Vector3(gridVector.x, 0.0f, gridVector.y);
     }
 
-    bool IsLastSegment(int segmentIndex)
+    public Vector2Int SnapWorldToGrid(Vector3 worldPosition)
+    {
+        return new Vector2Int(
+            Mathf.RoundToInt(worldPosition.x),
+            Mathf.RoundToInt(worldPosition.z)
+        );
+    }
+
+    public bool IsLastSegment(int segmentIndex)
     {
         return segmentIndex == segmentMovementDirection.Count() - 1;
     }
 
-    bool HasBubbleReachedCorner(Bubble bubble, Vector2Int corner)
+    public bool HasBubbleReachedCorner(Bubble bubble, Vector2Int corner)
     {
         return Mathf.Abs(bubble.transform.position.x - corner.x) < 0.05f
                && Mathf.Abs(bubble.transform.position.z - corner.y) < 0.05f;
     }
 
-    bool IsBubbleOnBelt(Bubble bubble)
+    public bool IsBubbleOnBelt(Bubble bubble)
     {
         return bubble.GetState() == BubbleState.OnBelt;
     }

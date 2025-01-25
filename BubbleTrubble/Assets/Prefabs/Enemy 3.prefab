@@ -1,4 +1,4 @@
-﻿%YAML 1.1
+%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &441765700973389552
 GameObject:
@@ -54,7 +54,9 @@ MonoBehaviour:
   - {fileID: 6322155523011359362}
   stickyPrefab: {fileID: 4503913072553502232, guid: 774c7a8af6db7884d8c53950cb13758e, type: 3}
   speed: 0.5
+  swerve: 1
   selfWorth: 15
+  moveMode: 1
 --- !u!54 &5938853969829891761
 Rigidbody:
   m_ObjectHideFlags: 0
