@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 
             if (distance < interactableRange)
             {
-                interactableObject.GetComponent<IInteractable>().Interact(gameObject);
+                interactableObject.GetComponent<IInteractable>().Interact(this);
                 return;
             }
         }

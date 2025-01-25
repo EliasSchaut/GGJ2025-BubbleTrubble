@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum MoveMode
+{
+    NotAtAll,
+    Direct,
+    Corkscrew,
+    ZigZag,
+}
+
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyPart[] parts;
     [SerializeField] private GameObject stickyPrefab;
+    [SerializeField] private float speed = 0.5f;
+    [SerializeField] private float swerve = 1.0f;
     [SerializeField] private int selfWorth = 15;
+    [SerializeField] private MoveMode moveMode = MoveMode.Direct;
 
     private static readonly Vector3 direction = new(0f, 0f, -1f);
 
-    private List<Sticky> stickies = new();
-    private Dictionary<BubbleColor, List<EnemyPart>> partsByColor = new();
+    private float timer = 0f;
+    
+    private readonly List<Sticky> stickies = new();
+    private readonly Dictionary<BubbleColor, List<EnemyPart>> partsByColor = new();
 
     private void Start()
     {
@@ -28,14 +41,35 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.position += direction * 0.5f * Time.deltaTime;
+        timer += Time.deltaTime;
+        
+        if (moveMode == MoveMode.NotAtAll)
+            return;
+        
+        Vector3 dir = direction;
+        
+        switch (moveMode)
+        {
+            case MoveMode.ZigZag:
+                dir += transform.right * Mathf.Sin(timer * swerve);
+                break;
+            
+            case MoveMode.Corkscrew:
+                dir += transform.right * Mathf.Sin(timer * swerve);
+                dir += transform.up * Mathf.Cos(timer * swerve);
+                break;
+        }
+        
+        dir.Normalize();
+        
+        transform.position += dir * (speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
             
             GameManager.Instance.LoseLife();
             

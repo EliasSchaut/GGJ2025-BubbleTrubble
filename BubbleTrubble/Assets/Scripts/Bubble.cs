@@ -116,8 +116,8 @@ public class Bubble : MonoBehaviour, IInteractable
         return beltIndex;
     }
 
-    public void Interact(GameObject player)
+    public void Interact(Player player)
     {
-        player.GetComponent<Player>().SetBubble(gameObject);
+        player.SetBubble(gameObject);
     }
 }

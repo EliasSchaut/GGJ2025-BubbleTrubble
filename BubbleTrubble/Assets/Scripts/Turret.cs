@@ -13,7 +13,7 @@ public class Turret : MonoBehaviour, IInteractable
     public void ChangeAzimuth(float angle)
     {
         float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(platform.localEulerAngles.y + angle), min: -90f, max: 90f);
-            
+        
         platform.localRotation = Quaternion.Euler(x: 0f, newAngle, z: 0f);
     }
     
@@ -42,8 +42,8 @@ public class Turret : MonoBehaviour, IInteractable
         ammo.SetCurrentAmmoIndex(ammoSlot);
     }
     
-    public void Interact(GameObject player)
+    public void Interact(Player player)
     {
-        player.GetComponent<Player>().SetInTurret(true);
+        player.SetInTurret(true);
     }
 }
