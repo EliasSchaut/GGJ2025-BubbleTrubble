@@ -186,7 +186,16 @@ public class BeltGrid : MonoBehaviour
 
     void SetArrivedSink(Bubble bubble)
     {
-        bubble.SetState(BubbleState.OnSink);
-        bubbleManagerScript.SetBubbleOnSink(bubble);
+        if (bubbleManagerScript.HasBubbleOnSink())
+        {
+            Bubble bubbleOnSink = bubbleManagerScript.PopBubbleOnSink()!;
+            bubbleManagerScript.Destroy(bubbleOnSink);
+            bubbleManagerScript.Destroy(bubble);
+        }
+        else
+        {
+            bubble.SetState(BubbleState.OnSink);
+            bubbleManagerScript.SetBubbleOnSink(bubble);
+        }
     }
 }
