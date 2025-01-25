@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4176527208094523145}
   - component: {fileID: 8667143574654986875}
   - component: {fileID: 3020688051834872804}
-  - component: {fileID: 2732427377072354188}
   - component: {fileID: 913405164628159586}
   - component: {fileID: -3300679014596619503}
+  - component: {fileID: 2606678172868702180}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -111,22 +111,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2732427377072354188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4943124200211764700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1015cd0580244f409fdf6e71a65fa72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
-  moveSpeed: 5
-  moveDirection: {x: 0, y: 0, z: 0}
-  inputVector: {x: 0, y: 0}
 --- !u!114 &913405164628159586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +138,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2732427377072354188}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -244,3 +228,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &2606678172868702180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943124200211764700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00034c5860cdf482fba815954f147db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody: {fileID: -3300679014596619503}
+  moveSpeed: 5
+  moveDirection: {x: 0, y: 0, z: 0}
+  inputVector: {x: 0, y: 0}
