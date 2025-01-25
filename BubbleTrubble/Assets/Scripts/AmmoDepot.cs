@@ -50,9 +50,11 @@ public class AmmoDepot : MonoBehaviour
         return ammoColor;
     }
     
+    public bool HasCapacity => ammo.Count < 3;
+    
     public void AddAmmo(GameObject bubble)
     {
-        if (ammo.Count < 3) {
+        if (HasCapacity) {
             bubble.GetComponent<Bubble>().SetState(BubbleState.OnTurret);
             bubble.transform.parent = transform;
             bubble.transform.localPosition = new Vector3(ammo.Count * 1.1f, 0, 0);

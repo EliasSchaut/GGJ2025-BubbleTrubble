@@ -8,6 +8,8 @@ public class EnemyMothership : MonoBehaviour
     
     private float timer;
     
+    public int Wave { get; set; }
+    
     private void Update()
     {
         timer += Time.deltaTime;
@@ -15,8 +17,8 @@ public class EnemyMothership : MonoBehaviour
         if (timer < interArrivalTime) return;
 
         timer = 0;
-            
-        int index = Random.Range(0, enemies.Length);
+
+        int index = Mathf.Min(Random.Range(0, enemies.Length), Wave - 1);
         Instantiate(enemies[index], spawnPoint.position, Quaternion.identity);
     }
 }

@@ -52,6 +52,13 @@ public class Turret : MonoBehaviour, IInteractable
     {
         ammo.SetCurrentAmmoIndex(ammoSlot);
     }
+
+    public void AddAmmo(Bubble bubble)
+    {
+        ammo.AddAmmo(bubble.gameObject);
+    }
+
+    public bool CanAddAmmo => ammo.HasCapacity;
     
     public void Interact(Player player)
     {
