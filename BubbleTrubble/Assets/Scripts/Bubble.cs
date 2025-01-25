@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum BubbleState
 {
@@ -9,7 +10,7 @@ public enum BubbleState
     OnTurret
 }
 
-public class Bubble : MonoBehaviour
+public class Bubble : MonoBehaviour, IInteractable
 {
     private BubbleColor bubbleColor = BubbleColor.White;
 
@@ -113,5 +114,10 @@ public class Bubble : MonoBehaviour
     public int GetBeltIndex()
     {
         return beltIndex;
+    }
+
+    public void Interact(GameObject player)
+    {
+        
     }
 }

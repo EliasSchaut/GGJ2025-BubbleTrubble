@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform platform;
     [SerializeField] private Transform ball;
@@ -40,5 +40,10 @@ public class Turret : MonoBehaviour
     public void SelectAmmoSlot(int ammoSlot)
     {
         ammo.SetCurrentAmmoIndex(ammoSlot);
+    }
+    
+    public void Interact(GameObject player)
+    {
+        
     }
 }
