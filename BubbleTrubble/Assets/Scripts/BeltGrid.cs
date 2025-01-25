@@ -1,23 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BeltGrid : MonoBehaviour
 {
+    [SerializeField] private GameObject bubbleManagerPrefab;
     [SerializeField] private Vector2Int[] beltCorners;
     [SerializeField] private GameObject beltPrefab;
     [SerializeField] private GameObject bubbleDispenserPrefab;
     [SerializeField] private GameObject bubbleSinkPrefab;
     [SerializeField] private float bubbleSpawnTime = 2.0f;
     [SerializeField] private float beltSpeed = 1.0f;
+    private List<Vector2Int> segmentMovementDirection = new List<Vector2Int>();
+    private BubbleManager bubbleManager;
     private GameObject bubbleDispenser;
     private BubbleDispenser bubbleDispenserComponent;
-    private List<Vector2Int> segmentMovementDirection = new List<Vector2Int>();
-    private List<Bubble> bubbles = new List<Bubble>();
-    private List<Bubble> bubblesToRemove = new List<Bubble>();
     private float spawnCounter;
 
     void Start()
@@ -26,7 +24,8 @@ public class BeltGrid : MonoBehaviour
         {
             throw new System.Exception("BeltGrid must have at least 2 corners");
         }
-
+        
+        bubbleManager = Instantiate(bubbleManagerPrefab).GetComponent<BubbleManager>();
         bubbleDispenser = InstantiateOnGrid(bubbleDispenserPrefab, beltCorners.First());
         bubbleDispenserComponent = bubbleDispenser.GetComponent<BubbleDispenser>();
         InstantiateOnGrid(bubbleSinkPrefab, beltCorners.Last());
@@ -65,7 +64,7 @@ public class BeltGrid : MonoBehaviour
 
     void UpdateBubbleMovement()
     {
-        foreach (Bubble bubble in bubbles)
+        foreach (Bubble bubble in bubbleManager.FindMany())
         {
             if (!IsBubbleOnBelt(bubble)) continue;
             int bubbleSegment = bubble.GetBeltIndex();
@@ -77,7 +76,7 @@ public class BeltGrid : MonoBehaviour
             {
                 if (IsLastSegment(bubbleSegment))
                 {
-                    QueueDestroyBubble(bubble);
+                    bubbleManager.QueueDestroy(bubble);
                     continue;
                 }
 
@@ -86,7 +85,7 @@ public class BeltGrid : MonoBehaviour
             }
         }
 
-        DestroyQueuedBubbles();
+        bubbleManager.DestroyQueued();
     }
 
     void MoveBubble(Bubble bubble, Vector2Int movementDirection)
@@ -106,22 +105,7 @@ public class BeltGrid : MonoBehaviour
     void SpawnBubble()
     {
         Bubble newBubble = bubbleDispenserComponent.SpawnBubble();
-        bubbles.Add(newBubble);
-    }
-
-    void QueueDestroyBubble(Bubble bubble)
-    {
-        bubblesToRemove.Add(bubble);
-    }
-
-    void DestroyQueuedBubbles()
-    {
-        foreach (Bubble bubble in bubblesToRemove)
-        {
-            bubbles.Remove(bubble);
-            Destroy(bubble.gameObject);
-        }
-        bubblesToRemove.Clear();
+        bubbleManager.Add(newBubble);
     }
 
     GameObject InstantiateOnGrid(GameObject prefab, Vector2Int position)
