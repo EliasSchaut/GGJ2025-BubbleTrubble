@@ -113,8 +113,15 @@ public class Player : MonoBehaviour
         }
 
         if (Time.time - lastInteractTime < interactableInhibitTime) return;
-        
+
         GameObject[] interactableObjects = GameObject.FindGameObjectsWithTag("Interactable");
+        
+        Array.Sort(interactableObjects, (a, b) => {
+            float distanceA = Vector3.Distance(transform.position, a.transform.position);
+            float distanceB = Vector3.Distance(transform.position, b.transform.position);
+            return distanceA.CompareTo(distanceB);
+        });
+        
         foreach (GameObject interactableObject in interactableObjects)
         {
             float distance = Vector3.Distance(transform.position, interactableObject.transform.position);
