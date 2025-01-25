@@ -80,7 +80,7 @@ public class BeltGrid : MonoBehaviour
             {
                 if (IsLastSegment(bubbleSegment))
                 {
-                    bubble.SetState(BubbleState.OnSink);
+                    SetArrivedSink(bubble);
                     continue;
                 }
 
@@ -150,5 +150,11 @@ public class BeltGrid : MonoBehaviour
     public bool IsBubbleOnBelt(Bubble bubble)
     {
         return bubble.GetState() == BubbleState.OnBelt;
+    }
+
+    void SetArrivedSink(Bubble bubble)
+    {
+        bubble.SetState(BubbleState.OnSink);
+        bubbleManagerScript.SetBubbleOnSink(bubble);
     }
 }
