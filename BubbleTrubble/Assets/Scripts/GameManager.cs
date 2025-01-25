@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     private bool _isPaused = false;
+
+    private int _lives = 3;
     
     public static GameManager Instance
     {
@@ -71,6 +73,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.01f;
         //OpenWinUI();
     }
+
+    public void LoseLife()
+    {
+        _lives--;
+        if (_lives <= 0)
+        {
+            OnGameOver();
+        }
+    }
+    
+    
+    
     
     public void TogglePause()
     {
