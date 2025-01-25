@@ -19,17 +19,6 @@ public class BubbleManager : MonoBehaviour
         return bubbles;
     }
 
-    public void Destroy(Bubble bubble)
-    {
-        bubbles.Remove(bubble);
-        if (bubble.GetState() == BubbleState.OnSink)
-        {
-            bubbleOnSink = null;
-        }
-        
-        bubble.DestroyBubble();
-    }
-
     public void QueueDestroy(Bubble bubble)
     {
         bubblesToRemove.Add(bubble);
@@ -43,6 +32,17 @@ public class BubbleManager : MonoBehaviour
         }
 
         bubblesToRemove.Clear();
+    }
+    
+    void Destroy(Bubble bubble)
+    {
+        bubbles.Remove(bubble);
+        if (bubble.GetState() == BubbleState.OnSink)
+        {
+            bubbleOnSink = null;
+        }
+        
+        bubble.DestroyBubble();
     }
     
     public Bubble? PopBubbleOnSink()

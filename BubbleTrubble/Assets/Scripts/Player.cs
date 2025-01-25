@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     private TurretController turret;
     private TurretDoor turretDoor;
     private bool InTurret => turret == null;
+
+    private float lastInteractTime;
+    private float interactableInhibitTime = 0.2f;
     
     //private CustomInput input = null;
     
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        lastInteractTime = 0;
     }
 
     // Update is called once per frame
@@ -83,16 +87,20 @@ public class Player : MonoBehaviour
     public void SetBubble(GameObject bubble)
     {
         bubbleObject = bubble;
-        bubbleObject.GetComponent<Bubble>().SetState(BubbleState.CarriedByPlayer);
-        bubble.transform.parent = transform;
-        bubble.transform.localPosition = new Vector3(0, 1.5f, 0);
+        if (bubble != null) {
+            _holdsBubble = true;
+            bubbleObject.GetComponent<Bubble>().SetState(BubbleState.CarriedByPlayer);
+            bubble.transform.parent = transform;
+            bubble.transform.localPosition = new Vector3(0, 1.5f, 0);
+        }
+        else {
+            _holdsBubble = false;
+        }
     }
 
     public GameObject GetBubble()
     {
-        GameObject bubble = bubbleObject;
-        bubbleObject = null;
-        return bubble;
+        return bubbleObject;
     }
     
     public void OnInteract(InputAction.CallbackContext context)
@@ -103,6 +111,8 @@ public class Player : MonoBehaviour
             
             return;
         }
+
+        if (Time.time - lastInteractTime < interactableInhibitTime) return;
         
         GameObject[] interactableObjects = GameObject.FindGameObjectsWithTag("Interactable");
         foreach (GameObject interactableObject in interactableObjects)
@@ -111,8 +121,8 @@ public class Player : MonoBehaviour
 
             if (distance < interactableRange)
             {
-                interactableObject.GetComponent<IInteractable>().Interact(this);
-                return;
+                var interacted = interactableObject.GetComponent<IInteractable>().Interact(this);
+                if (interacted) return;
             }
         }
     }

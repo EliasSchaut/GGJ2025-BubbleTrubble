@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4589967767172269279}
   m_Layer: 0
   m_Name: Machine
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   machineColor: 0
+  bubbleManager: {fileID: 0}

@@ -1,4 +1,5 @@
 using UnityEngine;
 public interface IInteractable {
-    void Interact(Player player);
+    // returns true, if interacted
+    bool Interact(Player player);
 }

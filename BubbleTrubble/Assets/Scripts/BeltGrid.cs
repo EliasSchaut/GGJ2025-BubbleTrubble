@@ -1,7 +1,10 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BeltGrid : MonoBehaviour
 {
@@ -113,6 +116,35 @@ public class BeltGrid : MonoBehaviour
         bubbleManagerScript.Add(newBubble);
     }
 
+    public bool DestroyIfCollidingBubbles(Bubble bubble)
+    {
+        Bubble? collidingBubble = GetCollidingBubble(bubble);
+        if (collidingBubble != null)
+        {
+            bubbleManagerScript.QueueDestroy(collidingBubble);
+            bubbleManagerScript.QueueDestroy(bubble);
+            return true;
+        }
+
+        return false;
+    }
+    
+    public Bubble? GetCollidingBubble(Bubble bubble)
+    {
+        Vector3 bubblePosition = bubble.transform.position;
+        float bubbleRadius = 1f;
+        foreach (Bubble otherBubble in bubbleManagerScript.GetAll())
+        {
+            if (bubble == otherBubble) continue;
+            if (Vector3.Distance(bubblePosition, otherBubble.transform.position) < bubbleRadius * 2)
+            {
+                return otherBubble;
+            }
+        }
+
+        return null;
+    }
+
     public GameObject InstantiateOnGrid(GameObject prefab, Vector2Int position)
     {
         return Instantiate(prefab, GridVectorToWorld(position), Quaternion.identity);
@@ -154,7 +186,16 @@ public class BeltGrid : MonoBehaviour
 
     void SetArrivedSink(Bubble bubble)
     {
-        bubble.SetState(BubbleState.OnSink);
-        bubbleManagerScript.SetBubbleOnSink(bubble);
+        if (bubbleManagerScript.HasBubbleOnSink())
+        {
+            Bubble bubbleOnSink = bubbleManagerScript.PopBubbleOnSink()!;
+            bubbleManagerScript.QueueDestroy(bubbleOnSink);
+            bubbleManagerScript.QueueDestroy(bubble);
+        }
+        else
+        {
+            bubble.SetState(BubbleState.OnSink);
+            bubbleManagerScript.SetBubbleOnSink(bubble);
+        }
     }
 }

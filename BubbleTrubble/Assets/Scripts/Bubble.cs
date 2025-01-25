@@ -119,20 +119,14 @@ public class Bubble : MonoBehaviour, IInteractable
         return beltIndex;
     }
 
-    public void Interact(Player player)
+    public bool Interact(Player player)
     {
         player.SetBubble(gameObject);
+        return true;
     }
     
     public void SetBubbleManager(BubbleManager bubbleManager)
     {
         this.bubbleManager = bubbleManager;
-    }
-
-    void OnCollisionEnter(Collision bubbleCollision)
-    {
-        GameObject bubble = bubbleCollision.gameObject;
-        bubbleManager.Destroy(bubble.GetComponent<Bubble>());
-        bubbleManager.Destroy(this);
     }
 }
