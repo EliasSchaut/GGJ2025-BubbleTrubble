@@ -208,6 +208,74 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2606678172868702180}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bd3315e5-3493-45e4-a376-2381330e7966
+    m_ActionName: 'Player/SelectBubbleX[/XInputControllerWindows/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2606678172868702180}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnA
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 68609e9c-a1b9-4bca-9e76-c7b4b9827def
+    m_ActionName: 'Player/SelectBubbleA[/XInputControllerWindows/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2606678172868702180}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnB
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b41cb82b-8982-408e-a9f6-67ac588ce8de
+    m_ActionName: 'Player/SelectBubbleB[/XInputControllerWindows/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2606678172868702180}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ba6b4053-0cfb-4cd0-87f1-1a0a0f4c57b5
+    m_ActionName: 'Player/Shoot[/XInputControllerWindows/rightTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aaf1bfca-6131-4611-83b1-284ce703aa82
+    m_ActionName: GameOverScreen/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: XBOX Controller
   m_DefaultActionMap: Player

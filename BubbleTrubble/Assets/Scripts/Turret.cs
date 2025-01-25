@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Turret : MonoBehaviour, IInteractable
+public class Turret : MonoBehaviour
 {
     [SerializeField] private Transform platform;
     [SerializeField] private Transform ball;
@@ -10,7 +10,7 @@ public class Turret : MonoBehaviour, IInteractable
     
     [SerializeField] private GameObject projectile;
     
-    [SerializeField] private float cooldown = 2.0f;
+    [SerializeField] private float cooldown = 0.25f;
     [SerializeField] private float spread = 5.0f;
 
     private float timer;
@@ -77,9 +77,4 @@ public class Turret : MonoBehaviour, IInteractable
     }
 
     public bool CanAddAmmo => ammo.HasCapacity;
-    
-    public void Interact(Player player)
-    {
-        player.SetInTurret(true);
-    }
 }

@@ -10,17 +10,17 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private Vector2 inputVector = Vector2.zero;
-    
-    private Vector3 _rotatedForward = Vector3.forward;
-    private Vector3 _rotatedRight = Vector3.right;
 
     private bool _isActive = false;
-    private bool _inTurret = false;
     
     private bool _holdsBubble = false;
     private GameObject bubbleObject;
 
     private float interactableRange = 3f;
+
+    private TurretController turret;
+    private TurretDoor turretDoor;
+    private bool InTurret => turret == null;
     
     //private CustomInput input = null;
     
@@ -34,19 +34,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!_inTurret && _isActive)
+        if (_isActive)
         {
-
+            if (turret != null)
+            {
+                turret.Move(inputVector);
+            
+                return;
+            }
             
             moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
             
             rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
         }
-    }
-    
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        inputVector = context.ReadValue<Vector2>();
     }
 
     public bool IsPlayerActive()
@@ -61,14 +61,18 @@ public class Player : MonoBehaviour
         transform.rotation = spawnPoint.rotation;
     }
 
-    public bool IsInTurret()
+    public void SetInTurret(TurretController turret, TurretDoor turretDoor) 
     {
-        return _inTurret;
+        this.turret = turret;
+        this.turretDoor = turretDoor;
     }
 
-    public void SetInTurret(bool active)
+    private void LeaveTurret()
     {
-        _inTurret = active;
+        turretDoor.Leave();
+        
+        turret = null;
+        turretDoor = null;
     }
     
     public bool HoldsBubble()
@@ -90,12 +94,15 @@ public class Player : MonoBehaviour
         bubbleObject = null;
         return bubble;
     }
-
-
-
+    
     public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("Interact!");
+        if (turret != null)
+        {
+            OnY();
+            
+            return;
+        }
         
         GameObject[] interactableObjects = GameObject.FindGameObjectsWithTag("Interactable");
         foreach (GameObject interactableObject in interactableObjects)
@@ -109,12 +116,49 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
-    
-    
-    
-    
 
+    public void OnX()
+    {
+        if (turret != null)
+        {
+            turret.X();
+        }
+    }
     
+    public void OnY()
+    {
+        if (turret != null)
+        {
+            turret.Y();
+        }
+    }
+    
+    public void OnB()
+    {
+        if (turret != null)
+        {
+            turret.B();
+        }
+    }
+    
+    public void OnA()
+    {
+        if (turret != null)
+        {
+            turret.A();
+        }
+    }
 
+    public void OnFire()
+    {
+        if (turret != null)
+        {
+            turret.Fire();
+        }
+    }
+    
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        inputVector = context.ReadValue<Vector2>();
+    }
 }
