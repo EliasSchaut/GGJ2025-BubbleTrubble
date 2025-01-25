@@ -120,7 +120,6 @@ GameObject:
   - component: {fileID: 6028567056763543902}
   - component: {fileID: -8059428911265305121}
   - component: {fileID: 3818300965798078219}
-  - component: {fileID: 6177382017686567008}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Interactable
@@ -265,30 +264,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0080757e835c410d862250959af86c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &6177382017686567008
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3966274438142355409}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 503
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

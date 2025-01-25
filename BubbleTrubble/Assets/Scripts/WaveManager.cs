@@ -14,11 +14,13 @@ public class WaveManager : MonoBehaviour
     private Vector3 max;
     
     private int currentWave;
+    private int currentMothershipWave;
     private float timer;
     
     private void Start()
     {
         currentWave = 0;
+        currentMothershipWave = 0;
         
         min = Vector3.Min(spawnA.position, spawnB.position);
         max = Vector3.Max(spawnA.position, spawnB.position);
@@ -38,6 +40,11 @@ public class WaveManager : MonoBehaviour
             Vector3 spawnPosition = GetSpawnPosition();
             Instantiate(GetElement(childships), spawnPosition, Quaternion.identity);
         }
+
+        if (counts.mothership > 0)
+        {
+            currentMothershipWave += 1;
+        }
         
         for (int i = 0; i < counts.mothership; i++)
         {
@@ -45,7 +52,7 @@ public class WaveManager : MonoBehaviour
             
             EnemyMothership mothership = Instantiate(GetElement(motherships), spawnPosition, Quaternion.identity).GetComponent<EnemyMothership>();
             
-            mothership.Wave = currentWave;
+            mothership.Wave = currentMothershipWave;
         }
     }
 

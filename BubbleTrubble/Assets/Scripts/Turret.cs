@@ -9,6 +9,16 @@ public class Turret : MonoBehaviour, IInteractable
     [SerializeField] private AmmoDepot ammo;
     
     [SerializeField] private GameObject projectile;
+    
+    [SerializeField] private float cooldown = 2.0f;
+    [SerializeField] private float spread = 5.0f;
+
+    private float timer;
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+    }
 
     public bool IsOpenForAmmo
     {
@@ -32,12 +42,20 @@ public class Turret : MonoBehaviour, IInteractable
     
     public void Fire()
     {
+        if (timer < cooldown) {
+            return;
+        }
+        
+        timer = 0;
+        
         BubbleColor color = ammo.TryUseAmmo();
         if (color == BubbleColor.NoColor) {
             return;
         }
         
-        GameObject shot = Instantiate(projectile, muzzle.position, muzzle.rotation);
+        Quaternion spread = Quaternion.Euler(Random.Range(-this.spread, this.spread), Random.Range(-this.spread, this.spread), 0);
+        
+        GameObject shot = Instantiate(projectile, muzzle.position, muzzle.rotation * spread);
         Projectile p = shot.GetComponent<Projectile>();
         
         p.Initialize(color);

@@ -1,3 +1,4 @@
+#nullable enable
 using UnityEngine;
 
 public enum BeltType
@@ -20,7 +21,9 @@ public class Belt : MonoBehaviour, IInteractable
         GameObject bubble = player.GetBubble();
         player.SetBubble(null);
         Bubble bubbleComponent = bubble.GetComponent<Bubble>();
-        SnapBubbleToBelt(bubbleComponent);
+        if (beltGrid.DestroyIfCollidingBubbles(bubbleComponent)) return;
+        
+        PlaceBubbleOnBeld(bubbleComponent);
     }
     
     public void SetGridPosition(Vector2Int gridPosition)
@@ -38,7 +41,7 @@ public class Belt : MonoBehaviour, IInteractable
         this.segmentIndex = segmentIndex;
     }
     
-    void SnapBubbleToBelt(Bubble bubble)
+    void PlaceBubbleOnBeld(Bubble bubble)
     {
         beltGrid.SnapBubbleToGrid(bubble.gameObject, gridPosition);
         bubble.SetState(BubbleState.OnBelt);
