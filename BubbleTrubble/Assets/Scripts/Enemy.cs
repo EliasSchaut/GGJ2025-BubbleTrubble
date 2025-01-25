@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int selfWorth = 15;
     [SerializeField] private MoveMode moveMode = MoveMode.Direct;
 
-    private static readonly Vector3 direction = new(0f, 0f, -1f);
+    private static readonly Vector3 direction = new Vector3(0f, 1f, 1f).normalized;
 
     private float timer = 0f;
     
