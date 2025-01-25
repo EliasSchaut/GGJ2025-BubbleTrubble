@@ -8,21 +8,34 @@ public class AmmoDepot : MonoBehaviour
     
     [SerializeField] private bool cheatMode;
     [SerializeField] private GameObject cheatAmmoPrefab;
+
+    [SerializeField] private GameObject markerOpen;
+    [SerializeField] private GameObject markerSelection;
     
     private int currentAmmoIndex;
-    
-    public bool IsOpenForAmmo { get; set; }
+    private bool isOpen = false;
+
+
+    public bool IsOpenForAmmo
+    {
+        get => isOpen;
+        set { isOpen = value; UpdateMarkers(); }
+    }
     
     private void Start()
     {
         CheatAddBubble(BubbleColor.Red);
         CheatAddBubble(BubbleColor.Yellow);
         CheatAddBubble(BubbleColor.Blue);
+        
+        UpdateMarkers();
     }
 
     public void SetCurrentAmmoIndex(int ammoIndex)
     {
         currentAmmoIndex = ammoIndex;
+        
+        UpdateMarkers();
     }
 
     public int GetCurrentAmmoIndex()
@@ -57,9 +70,14 @@ public class AmmoDepot : MonoBehaviour
         if (HasCapacity) {
             bubble.GetComponent<Bubble>().SetState(BubbleState.OnTurret);
             bubble.transform.parent = transform;
-            bubble.transform.localPosition = new Vector3(ammo.Count * 1.1f, 0, 0);
+            bubble.transform.localPosition = GetAmmoPosition(ammo.Count);
             ammo.Add(bubble);
         }
+    }
+
+    private Vector3 GetAmmoPosition(int ammoIndex)
+    {
+        return new Vector3(ammoIndex * 1.1f, 0, 0);
     }
     
     private void CheatAddBubble(BubbleColor color = BubbleColor.White)
@@ -69,5 +87,12 @@ public class AmmoDepot : MonoBehaviour
             bubble.GetComponent<Bubble>().MixWithColor(color);
             AddAmmo(bubble);
         }
+    }
+
+    private void UpdateMarkers()
+    {
+        markerOpen.SetActive(IsOpenForAmmo);
+
+        markerSelection.transform.localPosition = GetAmmoPosition(currentAmmoIndex);
     }
 }

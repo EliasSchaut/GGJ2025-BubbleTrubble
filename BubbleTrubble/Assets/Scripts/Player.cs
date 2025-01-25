@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
 
     private float lastInteractTime;
     private float interactableInhibitTime = 0.2f;
+
+    private float enterGrace = 0.2f;
+    private float graceTimer = 0.0f;
     
     [SerializeField]private Animator animator;
     
@@ -57,6 +60,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        graceTimer += Time.deltaTime;
+    }
+
     public bool IsPlayerActive()
     {
         return _isActive;
@@ -76,6 +84,7 @@ public class Player : MonoBehaviour
         _inTurret = true;
         //animator.SetTrigger("elevator_reached");
         transform.position = new Vector3(transform.position.x, transform.position.y - 10, transform.position.z);
+        enterGrace = 0.0f;
     }
 
     private void LeaveTurret()
@@ -118,8 +127,6 @@ public class Player : MonoBehaviour
     {
         if (turret != null)
         {
-            OnY();
-            
             return;
         }
 
@@ -148,7 +155,7 @@ public class Player : MonoBehaviour
 
     public void OnX()
     {
-        if (turret != null)
+        if (turret != null && graceTimer > enterGrace)
         {
             turret.X();
         }
@@ -156,7 +163,7 @@ public class Player : MonoBehaviour
     
     public void OnY()
     {
-        if (turret != null)
+        if (turret != null && graceTimer > enterGrace)
         {
             turret.Y();
         }
@@ -164,7 +171,7 @@ public class Player : MonoBehaviour
     
     public void OnB()
     {
-        if (turret != null)
+        if (turret != null && graceTimer > enterGrace)
         {
             turret.B();
         }
@@ -172,7 +179,7 @@ public class Player : MonoBehaviour
     
     public void OnA()
     {
-        if (turret != null)
+        if (turret != null && graceTimer > enterGrace)
         {
             turret.A();
         }
@@ -180,7 +187,7 @@ public class Player : MonoBehaviour
 
     public void OnFire()
     {
-        if (turret != null)
+        if (turret != null && graceTimer > enterGrace)
         {
             turret.Fire();
         }
@@ -188,7 +195,7 @@ public class Player : MonoBehaviour
 
     public void OnExit()
     {
-        if (turret != null)
+        if (turret != null && graceTimer > enterGrace)
         {
             LeaveTurret();
         }

@@ -28,14 +28,14 @@ public class Turret : MonoBehaviour
 
     public void ChangeAzimuth(float angle)
     {
-        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(platform.localEulerAngles.y + angle), min: -90f, max: 90f);
+        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(platform.localEulerAngles.y + angle * 0.1f), min: -90f, max: 90f);
         
         platform.localRotation = Quaternion.Euler(x: 0f, newAngle, z: 0f);
     }
     
     public void ChangeElevation(float angle)
     {
-        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(ball.localEulerAngles.x + angle), min: -90f, max: 0f);
+        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(ball.localEulerAngles.x - angle * 0.1f), min: -90f, max: 0f);
         
         ball.localRotation = Quaternion.Euler(newAngle, y: 0f, z: 0f);
     }

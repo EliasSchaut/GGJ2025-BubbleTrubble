@@ -20,7 +20,6 @@ public class TurretManager: MonoBehaviour
         if (!(turretsRequesting.Count > 0) || !bubbleManager.HasBubbleOnSink()) return;
 
         Bubble bubble = bubbleManager.PopBubbleOnSink()!;
-        bubble.SetState(BubbleState.OnTurret);
         Turret turretPreffered = GetPreferredTurretToLoad(turretsRequesting);
         turretPreffered.AddAmmo(bubble);
     }

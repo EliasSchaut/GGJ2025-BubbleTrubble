@@ -38,7 +38,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < counts.childships; i++)
         {
             Vector3 spawnPosition = GetSpawnPosition();
-            Instantiate(GetElement(childships), spawnPosition, Quaternion.identity);
+            Instantiate(GetElement(childships), spawnPosition, gameObject.transform.rotation);
         }
 
         if (counts.mothership > 0)
