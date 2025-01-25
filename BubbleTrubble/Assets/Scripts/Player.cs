@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     private bool _isActive = false;
     private bool _inTurret = false;
+
+    private float interactableRange = 3f;
     
     //private CustomInput input = null;
     
@@ -61,6 +63,25 @@ public class Player : MonoBehaviour
     public void SetInTurret(bool active)
     {
         _inTurret = active;
+    }
+
+
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        Debug.Log("Interact!");
+        
+        GameObject[] interactableObjects = GameObject.FindGameObjectsWithTag("Interactable");
+        foreach (GameObject interactableObject in interactableObjects)
+        {
+            float distance = Vector3.Distance(transform.position, interactableObject.transform.position);
+
+            if (distance < interactableRange)
+            {
+                interactableObject.GetComponent<IInteractable>().Interact(gameObject);
+                return;
+            }
+        }
     }
     
     
