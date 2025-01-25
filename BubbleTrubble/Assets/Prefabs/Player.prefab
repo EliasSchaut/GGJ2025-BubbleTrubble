@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: -3300679014596619503}
-  moveSpeed: 5
+  moveSpeed: 10
   moveDirection: {x: 0, y: 0, z: 0}
   inputVector: {x: 0, y: 0}
   animator: {fileID: 6620596095388451824}
