@@ -40,5 +40,15 @@ public class TurretController : MonoBehaviour
         {
             turret.Fire();
         }
+
+        if (keyboard.bKey.isPressed) {
+            turret.SelectAmmoSlot(0);
+        }
+        if (keyboard.nKey.isPressed) {
+            turret.SelectAmmoSlot(1);
+        }
+        if (keyboard.mKey.isPressed) {
+            turret.SelectAmmoSlot(2);
+        }
     }
 }

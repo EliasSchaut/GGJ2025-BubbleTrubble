@@ -26,11 +26,20 @@ public class Turret : MonoBehaviour
     
     public void Fire()
     {
-        if (!ammo.TryUseAmmo())
+        BubbleColor color = ammo.TryUseAmmo();
+        if (color == BubbleColor.NoColor) {
             return;
+        }
         
         GameObject shot = Instantiate(projectile, muzzle.position, muzzle.rotation);
         
-        ammo.InitializeProjectile(shot);
+        Projectile p = projectile.GetComponent<Projectile>();
+        
+        p.Initialize(color);
+    }
+
+    public void SelectAmmoSlot(int ammoSlot)
+    {
+        ammo.SetCurrentAmmoIndex(ammoSlot);
     }
 }
