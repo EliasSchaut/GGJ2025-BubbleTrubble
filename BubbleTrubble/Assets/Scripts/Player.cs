@@ -36,7 +36,10 @@ public class Player : MonoBehaviour
     {
         if (!_inTurret && _isActive)
         {
+            Debug.Log("inside fixed update2");
+            
             moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+            Debug.Log(moveDirection);
             rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
         }
     }
