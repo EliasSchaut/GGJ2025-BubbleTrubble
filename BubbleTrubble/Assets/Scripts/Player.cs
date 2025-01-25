@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 inputVector = Vector2.zero;
 
     private bool _isActive = false;
+    private bool _inTurret = false;
     
     private bool _holdsBubble = false;
     private GameObject bubbleObject;
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
 
     private float lastInteractTime;
     private float interactableInhibitTime = 0.2f;
+    
+    [SerializeField]private Animator animator;
     
     //private CustomInput input = null;
     
@@ -38,9 +41,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (_isActive)
+        if (!_isActive)
+            return;
+        
+        if (_inTurret)
         {
-            if (turret != null)
+            if (turret)
             {
                 turret.Move(inputVector);
             
@@ -50,6 +56,10 @@ public class Player : MonoBehaviour
             moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
             
             rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
+        }
+        else
+        {
+            Move();
         }
     }
 
@@ -69,11 +79,13 @@ public class Player : MonoBehaviour
     {
         this.turret = turret;
         this.turretDoor = turretDoor;
+        _inTurret = true;
     }
 
     private void LeaveTurret()
     {
         turretDoor.Leave();
+        _inTurret = false;
         
         turret = null;
         turretDoor = null;
@@ -185,5 +197,26 @@ public class Player : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         inputVector = context.ReadValue<Vector2>();
+    }
+    
+    public void Move()
+    {
+        if (!_inTurret && _isActive)
+        {
+            moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+
+            rigidbody.MovePosition(rigidbody.position - moveSpeed * Time.deltaTime * moveDirection);
+                
+            // Animation
+            if (moveDirection != Vector3.zero)
+            {
+                animator.SetBool("Walking", true);
+                rigidbody.MoveRotation(Quaternion.LookRotation(moveDirection, Vector3.up));
+            }
+            else
+            {
+                animator.SetBool("Walking", false);
+            }
+        }
     }
 }
