@@ -109,6 +109,7 @@ public class BeltGrid : MonoBehaviour
     void SpawnBubble()
     {
         Bubble newBubble = bubbleDispenserComponent.SpawnBubble();
+        newBubble.SetBubbleManager(bubbleManagerScript);
         bubbleManagerScript.Add(newBubble);
     }
 

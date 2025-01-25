@@ -14,6 +14,8 @@ public enum BubbleState
 
 public class Bubble : MonoBehaviour, IInteractable
 {
+    private BubbleManager bubbleManager;
+    
     private BubbleColor bubbleColor = BubbleColor.White;
 
     private MultiAudioSourcePlayer soundPlayer = null;
@@ -100,12 +102,6 @@ public class Bubble : MonoBehaviour, IInteractable
 
         return false;
     }
-
-    public void DestroyBubble()
-    {
-        // FIXME: play destroy sound
-        Destroy(gameObject);
-    }
     
     public void SetBeltIndex(int index)
     {
@@ -119,13 +115,18 @@ public class Bubble : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
-        if (currentState == BubbleState.OnBelt) {
-            player.SetBubble(gameObject);
-        }
+        player.SetBubble(gameObject);
+    }
+    
+    public void SetBubbleManager(BubbleManager bubbleManager)
+    {
+        this.bubbleManager = bubbleManager;
     }
 
-    void OnCollisionEnter(GameObject bubble)
+    void OnCollisionEnter(Collision bubbleCollision)
     {
-        throw new System.NotImplementedException();
+        GameObject bubble = bubbleCollision.gameObject;
+        bubbleManager.Destroy(bubble.GetComponent<Bubble>());
+        bubbleManager.Destroy(this);        
     }
 }
