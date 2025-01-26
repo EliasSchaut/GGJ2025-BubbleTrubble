@@ -73,6 +73,8 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             WaveManager.DecreaseEnemyCount();
             
+            SoundManager.Instance().PlayEnemyExplosionSound();
+            
             GameManager.Instance.LoseLife();
             
             return;
@@ -142,6 +144,8 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             WaveManager.DecreaseEnemyCount();
+            
+            SoundManager.Instance().PlayEnemyExplosionSound();
             
             GameManager.Instance.EnemyKilled(selfWorth);
         }

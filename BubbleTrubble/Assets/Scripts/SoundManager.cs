@@ -16,6 +16,8 @@ public class SoundManager : MonoBehaviour
 
     private float fadeDuration = 5.0f;
     
+    protected static SoundManager instance = null;
+    
     void Start()
     {
         soundPlayer = GetComponent<MultiAudioSourcePlayer>();
@@ -27,6 +29,12 @@ public class SoundManager : MonoBehaviour
         soundPlayer.PlaySound(0);
         soundPlayer.SetVolume(1, dynamicVolume);
         soundPlayer.PlaySound(1);
+        instance = this;
+    }
+
+    public static SoundManager Instance()
+    {
+        return instance;
     }
     
     private void Update()
@@ -68,4 +76,15 @@ public class SoundManager : MonoBehaviour
         dynamicVolumeTarget = 0;
         backgroundVolumeTarget = 1.0f;
     }
+
+    public void PlayElevatorSound()
+    {
+        soundPlayer.PlaySound(2);
+    }
+    
+    public void PlayEnemyExplosionSound()
+    {
+        soundPlayer.PlaySound(3);
+    }
+
 }
