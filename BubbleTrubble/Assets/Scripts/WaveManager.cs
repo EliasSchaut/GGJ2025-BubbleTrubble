@@ -91,7 +91,7 @@ public class WaveManager : MonoBehaviour
             0 => (2, 0, 0, 0),
             < 3 => (currentWave+1, 0, 0, 0),
             < 6 => (2, currentWave, 0, 0),
-            < 9 => (3, 2, currentWave, 0),
+            < 9 => (3, 2, currentWave -5 , 0),
             < 10 => (0, 0, 0, 1),
             < 13 => (5, 2, 1, 2),
             _ => (5, 4, 3, 3),
