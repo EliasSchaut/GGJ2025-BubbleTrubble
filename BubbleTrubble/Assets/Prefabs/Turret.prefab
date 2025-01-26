@@ -147,8 +147,6 @@ MonoBehaviour:
   spread: 0.69
   animator: {fileID: 8791925120109643757}
   aimDistance: 50
-  aimerBounds: {x: 50, y: 50}
-  lift: 35
   aimer: {fileID: 5057714788919346748}
 --- !u!114 &4228617610628057826
 MonoBehaviour:
@@ -1011,7 +1009,7 @@ Transform:
   m_GameObject: {fileID: 9143597251760789594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -1}
+  m_LocalPosition: {x: 0, y: -2, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
