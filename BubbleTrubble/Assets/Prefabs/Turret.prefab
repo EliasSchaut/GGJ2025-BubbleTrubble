@@ -144,7 +144,7 @@ MonoBehaviour:
   projectile: {fileID: 1519787826031228214, guid: e9ace88e4d4497b4bb88ea96001abea0, type: 3}
   cooldown: 0.25
   spread: 0.69
-  animator: {fileID: 0}
+  animator: {fileID: 8791925120109643757}
 --- !u!114 &4228617610628057826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,7 +1117,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8069066636161276365}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: cce2531c1bc0543cdabcdcf60afefb0d, type: 3}
   m_Controller: {fileID: 9100000, guid: 06db65097e0bc4df1aedfcf6661dcb82, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
