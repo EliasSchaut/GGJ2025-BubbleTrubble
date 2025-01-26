@@ -877,9 +877,18 @@
             "id": "43c974b1-973d-41bc-b193-52be9718866f",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "PlayAgain",
                     "type": "Button",
                     "id": "aaf1bfca-6131-4611-83b1-284ce703aa82",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ExitGame",
+                    "type": "Button",
+                    "id": "d509b503-53cd-4f6a-ac4c-abe8ca86d342",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -890,11 +899,44 @@
                 {
                     "name": "",
                     "id": "1710d8c4-68ed-45c4-bfe4-56ac131a30c4",
-                    "path": "",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PlayAgain",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff912c95-95a2-46d6-8318-5e21a139abac",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";XBOX Controller",
+                    "action": "PlayAgain",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "501adfcc-9de3-4570-b9e8-e3f445d1c0b1",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ExitGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d72749f-2767-433f-ba8d-a9b4c75b7f05",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";XBOX Controller",
+                    "action": "ExitGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

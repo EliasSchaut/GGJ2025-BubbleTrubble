@@ -9,6 +9,8 @@ public class BubbleManager : MonoBehaviour
     private List<Bubble> bubbles = new List<Bubble>();
     private List<Bubble> bubblesToRemove = new List<Bubble>();
     private Bubble? bubbleOnSink = null;
+    
+    [SerializeField] private GameObject bubbleDestroyAnimationPrefab = null;
 
     public void Add(Bubble bubble)
     {
@@ -38,9 +40,17 @@ public class BubbleManager : MonoBehaviour
     public void DestroyBubble(Bubble bubble)
     {
         bubbles.Remove(bubble);
-        if (bubble.GetState() == BubbleState.OnSink)
+        var bubbleState = bubble.GetState();
+        if (bubbleState == BubbleState.OnSink)
         {
             bubbleOnSink = null;
+        }
+
+        if (bubbleState == BubbleState.OnBelt || bubbleState == BubbleState.OnMachine ||
+            bubbleState == BubbleState.CarriedByPlayer) {
+            var position = bubble.transform.position;
+            position.y = 2.6f;
+            Instantiate(bubbleDestroyAnimationPrefab, position, Quaternion.Euler(-90f, 0f, 0f));
         }
         
         bubble.DestroyBubble();

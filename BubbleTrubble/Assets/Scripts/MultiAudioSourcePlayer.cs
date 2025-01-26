@@ -12,7 +12,10 @@ public class MultiAudioSourcePlayer : MonoBehaviour
 
     public void PlaySound(int index)
     {
-    	if (audioSources == null) {
+        if (audioSources == null) {
+            audioSources = GetComponents<AudioSource>();
+        }
+        if (audioSources == null) {
     		return;
     	}
         if (index >= 0 && index < audioSources.Length) {

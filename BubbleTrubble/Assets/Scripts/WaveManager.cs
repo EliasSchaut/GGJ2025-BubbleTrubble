@@ -31,6 +31,7 @@ public class WaveManager : MonoBehaviour
     private void StartWave()
     {
         currentWave += 1;
+        GameManager.Instance.SetWave(currentWave);
         timer = 0.0f;
         
         (int childships, int mothership) counts = GetShipsCount();

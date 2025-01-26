@@ -90,7 +90,9 @@ public class Turret : MonoBehaviour
     
     public void Fire()
     {
-        if (timer < cooldown) {
+        if (timer < cooldown)
+        {
+            animator.SetBool("Shooting", false);
             return;
         }
         
@@ -108,7 +110,7 @@ public class Turret : MonoBehaviour
         
         p.Initialize(color);
         
-        animator.SetTrigger("Fire");
+        animator.SetBool("Shooting", true);
     }
     
     public void ToggleOpenForAmmo()

@@ -46,7 +46,7 @@ public class Machine : MonoBehaviour, IInteractable
         {
             bubble.GetComponent<Bubble>().SetState(BubbleState.OnMachine);
             bubble.transform.parent = transform;
-            bubble.transform.localPosition = new Vector3(0, 0.5f, 0);
+            bubble.transform.localPosition = new Vector3(0, 1.0f, 0);
             currentBubble = bubble;
             processingStartTime = Time.time;
             isProcessing = true;
