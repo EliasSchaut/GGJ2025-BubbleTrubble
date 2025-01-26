@@ -215,7 +215,7 @@
                     "name": "",
                     "id": "b6e9efd5-bb4a-4ebd-9ed0-12295eb81be4",
                     "path": "<XInputController>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": ";XBOX Controller",
                     "action": "Interact",

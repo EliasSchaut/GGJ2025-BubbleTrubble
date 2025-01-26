@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 6745058053172446594}
-  speed: 200
+  speed: 25
 --- !u!114 &863009145471092118
 MonoBehaviour:
   m_ObjectHideFlags: 0
