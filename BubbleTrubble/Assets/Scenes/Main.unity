@@ -1152,6 +1152,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7769951421894727821, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e0759d6ab9c0a46138a27b6c76b18d04, type: 3}
       propertyPath: m_Name
       value: Scene_Sketch_02
