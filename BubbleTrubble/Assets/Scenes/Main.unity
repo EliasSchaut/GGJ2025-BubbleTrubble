@@ -3124,6 +3124,10 @@ PrefabInstance:
       value: Wave Manager
       objectReference: {fileID: 0}
     - target: {fileID: 6297708458700607474, guid: 66c239bbb899993418466347aa381242, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 8036082902491058167}
+    - target: {fileID: 6297708458700607474, guid: 66c239bbb899993418466347aa381242, type: 3}
       propertyPath: waveDuration
       value: 30
       objectReference: {fileID: 0}
@@ -3647,6 +3651,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5286acba51b14a068baff1a0e3a7df6, type: 3}
+--- !u!1 &8036082902491058167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6297930420682278101, guid: f5286acba51b14a068baff1a0e3a7df6, type: 3}
+  m_PrefabInstance: {fileID: 8036082902491058166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8814193330819518149
 PrefabInstance:
   m_ObjectHideFlags: 0
