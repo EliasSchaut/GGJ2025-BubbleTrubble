@@ -24,6 +24,7 @@ public class Belt : MonoBehaviour, IInteractable
         var position = bubble.transform.position;
         position.y = 0.5f;
         bubble.transform.position = position;
+        bubble.transform.localPosition = new Vector3(0, 0, 0);
         Bubble bubbleComponent = bubble.GetComponent<Bubble>();
         player.SetBubble(null);
         if (beltGrid.DestroyIfCollidingBubbles(bubbleComponent)) return true;
