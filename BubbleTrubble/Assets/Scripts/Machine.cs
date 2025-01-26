@@ -12,6 +12,7 @@ public class Machine : MonoBehaviour, IInteractable
     private float processingStartTime = 0f;
     
     private float processingTime = 2f;
+    private float sprayTime = 1.5f;
     
     [SerializeField] private GameObject bubbleManager;
     
@@ -30,7 +31,7 @@ public class Machine : MonoBehaviour, IInteractable
             soundPlayed = true;
             currentBubble.GetComponent<Bubble>().MixWithColor(machineColor);
         }
-        if (currentBubble && isProcessing && !soundPlayed && (Time.time - processingStartTime) > processingTime / 2.0f)
+        if (currentBubble && isProcessing && !soundPlayed && (Time.time - processingStartTime) > sprayTime)
         {
             var bubbleComponent = currentBubble.GetComponent<Bubble>();
             if (bubbleComponent.WouldChangeColor(machineColor)) {
