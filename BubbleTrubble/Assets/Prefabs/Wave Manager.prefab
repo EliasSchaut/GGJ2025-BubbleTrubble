@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 441765700973389552, guid: d04ebfd3232b08642b05d432d8887198, type: 3}
   spawnA: {fileID: 387023733226495566}
   spawnB: {fileID: 5193265496655685142}
+  soundManager: {fileID: 0}
   waveDuration: 5
 --- !u!1 &5119620920698088091
 GameObject:
@@ -80,7 +81,7 @@ Transform:
   m_GameObject: {fileID: 5119620920698088091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 10}
+  m_LocalPosition: {x: -30, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -111,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 6588443505194965489}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
