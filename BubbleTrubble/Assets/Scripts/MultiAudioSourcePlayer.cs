@@ -24,4 +24,20 @@ public class MultiAudioSourcePlayer : MonoBehaviour
             }
         }
     }
+
+    public void SetVolume(int index, float volume)
+    {
+        if (audioSources == null) {
+            audioSources = GetComponents<AudioSource>();
+        }
+        if (audioSources == null) {
+            return;
+        }
+
+        if (index >= 0 && index < audioSources.Length) {
+            if (audioSources[index]) {
+                audioSources[index].volume = volume;
+            }
+        }
+    }
 }
