@@ -31,5 +31,7 @@ public class Projectile : MonoBehaviour
         BubbleColors.SetObjectColor(gameObject, bubbleColor);
         
         Color = bubbleColor;
+        
+        GetComponent<MultiAudioSourcePlayer>().PlaySound(0);
     }
 }

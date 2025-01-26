@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     private GameObject bubbleManager;
 
     private bool _isActive = false;
-    private bool _inTurret = false;
     
     private bool _holdsBubble = false;
     private GameObject bubbleObject;
@@ -23,7 +22,7 @@ public class Player : MonoBehaviour
 
     private TurretController turret;
     private TurretDoor turretDoor;
-    private bool InTurret => turret == null;
+    private bool InTurret => turret != null;
 
     private float lastInteractTime;
     private float interactableInhibitTime = 0.2f;
@@ -52,19 +51,15 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         lastInteractTime = 0;
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         if (!_isActive)
             return;
         
-        if (_inTurret)
+        if (InTurret)
         {
-            if (turret)
-            {
-                turret.Move(inputVector);
-            }
+            turret.Move(inputVector);
         }
         else
         {
@@ -100,7 +95,6 @@ public class Player : MonoBehaviour
         DropBubbleAndDestroy();
         this.turret = turret;
         this.turretDoor = turretDoor;
-        _inTurret = true;
         //animator.SetTrigger("elevator_reached");
         transform.position = new Vector3(transform.position.x, transform.position.y - 10, transform.position.z);
         enterGrace = 0.0f;
@@ -109,7 +103,6 @@ public class Player : MonoBehaviour
     private void LeaveTurret()
     {
         turretDoor.Leave();
-        _inTurret = false;
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         
         turret = null;
@@ -241,7 +234,7 @@ public class Player : MonoBehaviour
     
     public void Move()
     {
-        if (!_inTurret && _isActive)
+        if (!InTurret && _isActive)
         {
             moveDirection = new Vector3(-inputVector.x, 0, -inputVector.y).normalized;
 

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
     
-    private List<GameObject> _players = new List<GameObject>();
+    private List<GameObject> _players = new();
     [SerializeField] private GameObject[] playerSpawns;
     [SerializeField] private Material[] playerMaterials;
     private int activePlayers = 0;
