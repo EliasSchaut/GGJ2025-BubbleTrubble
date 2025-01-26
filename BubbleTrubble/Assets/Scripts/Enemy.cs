@@ -125,7 +125,8 @@ public class Enemy : MonoBehaviour
             if (!stickiedColors.Add(bubbleColor))
                 return;
 
-            if (!partsByColor.TryGetValue(bubbleColor, out List<EnemyPart> list) || list.Count <= 0) continue;
+            if (!partsByColor.TryGetValue(bubbleColor, out List<EnemyPart> list) || list.Count <= 0) 
+                continue;
 
             foreach (EnemyPart part in list)
             {
