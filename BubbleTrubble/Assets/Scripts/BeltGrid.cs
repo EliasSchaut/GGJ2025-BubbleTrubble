@@ -147,7 +147,9 @@ public class BeltGrid : MonoBehaviour
 
     public GameObject InstantiateOnGrid(GameObject prefab, Vector2Int position)
     {
-        return Instantiate(prefab, GridVectorToWorld(position), Quaternion.identity);
+        GameObject gameObject = Instantiate(prefab, GridVectorToWorld(position), Quaternion.identity);
+        gameObject.transform.parent = transform;
+        return gameObject;
     }
 
     public Vector2Int GetBeltCornerAtEndOfSegment(int segment)
