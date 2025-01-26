@@ -18,6 +18,8 @@ public class TurretDoor : MonoBehaviour, IInteractable
         _laser.gameObject.SetActive(true);
         _controller.SetAimEnabled(true);
         
+        SoundManager.Instance().PlayElevatorSound();
+        
         return true;
     }
 
@@ -26,5 +28,7 @@ public class TurretDoor : MonoBehaviour, IInteractable
         _player = null;
         _laser.gameObject.SetActive(false);
         _controller.SetAimEnabled(false);
+        
+        SoundManager.Instance().PlayElevatorSound();
     }
 }
