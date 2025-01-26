@@ -34,11 +34,11 @@ public class SoundManager : MonoBehaviour
         var delta = backgroundVolumeTarget - backgroundVolume;
         if (delta != 0) {
             backgroundVolume += Math.Sign(delta) * (1.0f / fadeDuration) * Time.deltaTime;
-            if (backgroundVolume > backgroundVolumeTarget) {
+            if (Math.Sign(delta) == 1 && backgroundVolume > backgroundVolumeTarget) {
                 backgroundVolume = backgroundVolumeTarget;
             }
 
-            if (backgroundVolume < 0) {
+            if (Math.Sign(delta) == -1 && backgroundVolume < 0) {
                 backgroundVolume = 0;
             }
             soundPlayer.SetVolume(0, backgroundVolume);
@@ -46,14 +46,14 @@ public class SoundManager : MonoBehaviour
         delta = dynamicVolumeTarget - dynamicVolume;
         if (delta != 0) {
             dynamicVolume += Math.Sign(delta) * (1.0f / fadeDuration) * Time.deltaTime;
-            if (dynamicVolume > dynamicVolumeTarget) {
+            if (Math.Sign(delta) == 1 && dynamicVolume > dynamicVolumeTarget) {
                 dynamicVolume = dynamicVolumeTarget;
             }
 
-            if (dynamicVolume < 0) {
+            if (Math.Sign(delta) == -1 && dynamicVolume < 0) {
                 dynamicVolume = 0;
             }
-            soundPlayer.SetVolume(0, dynamicVolume);
+            soundPlayer.SetVolume(1, dynamicVolume);
         }
     }
 
