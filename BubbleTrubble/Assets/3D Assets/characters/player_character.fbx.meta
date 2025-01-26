@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rogue_texture
-    second: {fileID: 2800000, guid: c1230aea46be044108186b34cf74f95d, type: 3}
+    second: {fileID: 2800000, guid: 28d09ff230880482aac175ce938ee23f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
