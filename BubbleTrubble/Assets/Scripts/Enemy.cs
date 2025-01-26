@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour
             BubbleColor bubbleColor = sticky.BubbleColor;
             
             if (!stickiedColors.Add(bubbleColor))
-                return;
+                continue;
 
             if (!partsByColor.TryGetValue(bubbleColor, out List<EnemyPart> list) || list.Count <= 0) 
                 continue;
