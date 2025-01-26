@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1586766528859525401}
   - component: {fileID: 8454281240878702776}
   - component: {fileID: 4407683952405732026}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PartA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42fdd2ab532804dac68bac0080a961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleColor: 2
 --- !u!65 &4407683952405732026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -218,7 +217,7 @@ GameObject:
   - component: {fileID: 7674483537080776249}
   - component: {fileID: 5943705518109482860}
   - component: {fileID: 173992924441995152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MiddlePart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +306,7 @@ GameObject:
   - component: {fileID: 5757977404575387237}
   - component: {fileID: 6967632077080850464}
   - component: {fileID: 7060304139557551980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PartB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42fdd2ab532804dac68bac0080a961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleColor: 5
 --- !u!65 &7060304139557551980
 BoxCollider:
   m_ObjectHideFlags: 0
