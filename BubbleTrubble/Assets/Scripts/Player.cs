@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     
     [SerializeField]private Animator animator;
     
+    Renderer rend;
+    
     //private CustomInput input = null;
     
     
@@ -76,6 +78,9 @@ public class Player : MonoBehaviour
         _isActive = active;
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
+        
+        rend = GetComponent<Renderer> ();
+        rend.material.SetTextureOffset("player_texture", new Vector2(512, 0));
     }
 
     public void SetInTurret(TurretController turret, TurretDoor turretDoor)
