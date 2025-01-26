@@ -16,7 +16,6 @@ public class WaveManager : MonoBehaviour
     private Vector3 max;
     
     private int currentWave;
-    private int currentMothershipWave;
     private float timer;
     private float checkTimer;
 
@@ -25,7 +24,6 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         currentWave = 0;
-        currentMothershipWave = 0;
         
         min = Vector3.Min(spawnA.position, spawnB.position);
         max = Vector3.Max(spawnA.position, spawnB.position);
@@ -39,24 +37,30 @@ public class WaveManager : MonoBehaviour
         GameManager.Instance.SetWave(currentWave);
         timer = 0.0f;
 
-        (int childships, int mothership) counts = GetShipsCount();
+        (int c1, int c2, int c3, int m) = GetShipsCount();
 
-        for (int i = 0; i < counts.childships; i++) {
+        for (int i = 0; i < c1; i++) {
             Vector3 spawnPosition = GetSpawnPosition();
-            Instantiate(GetElement(childships), spawnPosition, gameObject.transform.rotation);
+            Instantiate(childships[0], spawnPosition, gameObject.transform.rotation);
+        }
+        
+        for (int i = 0; i < c2; i++) {
+            Vector3 spawnPosition = GetSpawnPosition();
+            Instantiate(childships[1], spawnPosition, gameObject.transform.rotation);
+        }
+        
+        for (int i = 0; i < c3; i++) {
+            Vector3 spawnPosition = GetSpawnPosition();
+            Instantiate(childships[2], spawnPosition, gameObject.transform.rotation);
         }
 
-        if (counts.mothership > 0) {
-            currentMothershipWave += 1;
-        }
-
-        for (int i = 0; i < counts.mothership; i++) {
+        for (int i = 0; i < m; i++) {
             Vector3 spawnPosition = GetSpawnPosition();
 
-            EnemyMothership mothership = Instantiate(GetElement(motherships), spawnPosition, Quaternion.identity)
+            EnemyMothership mothership = Instantiate(motherships[0], spawnPosition, Quaternion.identity)
                 .GetComponent<EnemyMothership>();
 
-            mothership.Wave = currentMothershipWave;
+            mothership.Wave = currentWave;
         }
 
         soundManager.GetComponent<SoundManager>().SwitchToIntense();
@@ -80,27 +84,23 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private (int childships, int mothership) GetShipsCount()
+    private (int ship1, int ship2, int ship3, int mothership) GetShipsCount()
     {
         return currentWave switch
         {
-            0 => (1, 0),
-            < 3 => (currentWave, 0),
-            < 5 => (3, 1),
-            < 7 => (3, 2),
-            < 9 => (3, 3),
-            _ => (3, 4)
+            0 => (1, 0, 0, 0),
+            < 3 => (currentWave, 0, 0, 0),
+            < 6 => (2, currentWave, 0, 0),
+            < 9 => (3, 2, currentWave, 0),
+            < 10 => (0, 0, 0, 1),
+            < 13 => (5, 2, 1, 2),
+            _ => (5, 4, 3, 3),
         };
     }
 
     private Vector3 GetSpawnPosition()
     {
         return new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), Random.Range(min.z, max.z));
-    }
-    
-    private GameObject GetElement(GameObject[] elements)
-    {
-        return elements[Mathf.Min(Random.Range(0, elements.Length), currentWave - 1)];
     }
 
     public static void IncreateEnemyCount()

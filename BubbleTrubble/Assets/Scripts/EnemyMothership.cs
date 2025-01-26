@@ -17,8 +17,7 @@ public class EnemyMothership : MonoBehaviour
         if (timer < interArrivalTime) return;
 
         timer = 0;
-
-        int index = Mathf.Min(Random.Range(0, enemies.Length), Wave - 1);
-        Instantiate(enemies[index], spawnPoint.position, Quaternion.identity);
+        
+        Instantiate(enemies[0], spawnPoint.position, Quaternion.identity);
     }
 }
