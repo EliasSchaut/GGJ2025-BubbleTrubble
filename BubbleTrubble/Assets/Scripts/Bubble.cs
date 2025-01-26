@@ -127,6 +127,9 @@ public class Bubble : MonoBehaviour, IInteractable
 
     public bool Interact(Player player)
     {
+        if (player.HoldsBubble()) {
+            return false;
+        }
         if (currentState == BubbleState.OnBelt) {
             player.SetBubble(gameObject);
             return true;
