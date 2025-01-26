@@ -319,6 +319,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1482934997558251219, guid: b4c4ea476b12b29408aee4abd8804506, type: 3}
+      propertyPath: exitGameActionReference
+      value: 
+      objectReference: {fileID: 9003443667601432166, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 1482934997558251219, guid: b4c4ea476b12b29408aee4abd8804506, type: 3}
+      propertyPath: playAgainActionReference
+      value: 
+      objectReference: {fileID: 8729647937553090025, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 4688909550849727335, guid: b4c4ea476b12b29408aee4abd8804506, type: 3}
       propertyPath: m_Name
       value: GameManager
