@@ -18,6 +18,10 @@ public class WaveManager : MonoBehaviour
     private int currentWave;
     private int currentMothershipWave;
     private float timer;
+
+    private float checkTimer;
+
+    private static int enemyCount = 0;
     
     private void Start()
     {
@@ -28,6 +32,7 @@ public class WaveManager : MonoBehaviour
         max = Vector3.Max(spawnA.position, spawnB.position);
 
         timer = 15.0f;
+        checkTimer = 0;
     }
 
     private void StartWave()
@@ -67,6 +72,12 @@ public class WaveManager : MonoBehaviour
         {
             StartWave();
         }
+        
+        checkTimer += Time.deltaTime;
+        if (checkTimer > 1.0f) {
+            checkTimer = 0;
+            GameObject.
+        }
     }
 
     private (int childships, int mothership) GetShipsCount()
@@ -90,5 +101,15 @@ public class WaveManager : MonoBehaviour
     private GameObject GetElement(GameObject[] elements)
     {
         return elements[Mathf.Min(Random.Range(0, elements.Length), currentWave - 1)];
+    }
+
+    public static void IncreateEnemyCount()
+    {
+        enemyCount += 1;
+    }
+
+    public static void DecreaseEnemyCount()
+    {
+        enemyCount -= 1;
     }
 }
