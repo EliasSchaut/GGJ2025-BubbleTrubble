@@ -16,6 +16,7 @@ public class TurretDoor : MonoBehaviour, IInteractable
         _player = player;
         
         _laser.gameObject.SetActive(true);
+        _controller.SetAimEnabled(true);
         
         return true;
     }
@@ -24,5 +25,6 @@ public class TurretDoor : MonoBehaviour, IInteractable
     {
         _player = null;
         _laser.gameObject.SetActive(false);
+        _controller.SetAimEnabled(false);
     }
 }

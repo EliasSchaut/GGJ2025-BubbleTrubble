@@ -5,10 +5,14 @@ public class TurretController : MonoBehaviour
     [SerializeField] private Turret turret;
     [SerializeField] private float speed = 90;
 
+    public void SetAimEnabled(bool enabled)
+    {
+        turret.SetAimEnabled(enabled);
+    }
+    
     public void Move(Vector2 direction)
     {
-        turret.ChangeAzimuth(direction.x * Time.deltaTime * speed);
-        turret.ChangeElevation(direction.y * Time.deltaTime * speed);
+        turret.Move(direction * (Time.deltaTime * speed));
     }
 
     public void Fire()

@@ -300,6 +300,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0a8290ff-e61f-4283-8d9b-cc09001219a1
     m_ActionName: 'Player/Y[/Keyboard/o,/XInputControllerWindows/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d509b503-53cd-4f6a-ac4c-abe8ca86d342
+    m_ActionName: 'GameOverScreen/ExitGame[/Keyboard/b,/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: XBOX Controller
   m_DefaultActionMap: Player
@@ -348,6 +352,7 @@ MonoBehaviour:
   moveSpeed: 10
   moveDirection: {x: 0, y: 0, z: 0}
   inputVector: {x: 0, y: 0}
+  playerMaterial: {fileID: 2100000, guid: 6870f20eb549940da8dd8c0ae5b10291, type: 2}
   animator: {fileID: 6620596095388451824}
 --- !u!1001 &759842505896705633
 PrefabInstance:

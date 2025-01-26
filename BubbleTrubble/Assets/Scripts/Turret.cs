@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Turret : MonoBehaviour
 {
@@ -15,7 +17,21 @@ public class Turret : MonoBehaviour
     
     [SerializeField] private Animator animator;
 
+    [SerializeField] private float aimDistance = 50.0f;
+    [SerializeField] private Vector2 aimerBounds = new (50.0f, 50.0f);
+    [SerializeField] private GameObject aimer;
+
     private float timer;
+
+    private void Start()
+    {
+        Move(Vector2.zero);
+    }
+    
+    public void SetAimEnabled(bool enabled)
+    {
+        aimer.SetActive(enabled);
+    }
 
     private void Update()
     {
@@ -28,16 +44,46 @@ public class Turret : MonoBehaviour
         set => ammo.IsOpenForAmmo = value;
     }
 
-    public void ChangeAzimuth(float angle)
+    public void Move(Vector2 dir)
     {
-        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(platform.localEulerAngles.y + angle * 0.1f), min: -90f, max: 90f);
+        Vector3 aimerPos = aimer.transform.localPosition;
+        
+        aimerPos.x = Mathf.Clamp(aimerPos.x + dir.x, -aimerBounds.x, aimerBounds.x);
+        aimerPos.y = Mathf.Clamp(aimerPos.y + dir.y, -aimerBounds.y, aimerBounds.y);
+        aimerPos.z = aimDistance;
+        
+        aimer.transform.localPosition = aimerPos;
+        
+        Vector3 target = aimer.transform.position;
+        Camera cam = Camera.main;
+        
+        Ray ray = cam.ScreenPointToRay(cam.WorldToScreenPoint(target));
+        
+        if (Physics.Raycast(ray, out RaycastHit hit, float.PositiveInfinity, LayerMask.GetMask("Enemy"))) {
+            target = hit.point;
+        }
+        
+        Vector3 direction = target - transform.position;
+        
+        Quaternion globalRotation = Quaternion.LookRotation(direction, Vector3.up);
+        Quaternion localRotation = Quaternion.Inverse(transform.rotation) * globalRotation;
+        
+        Vector3 localEulerAngles = localRotation.eulerAngles + new Vector3(0, 180, 0);
+
+        ChangeAzimuth(localEulerAngles.y);
+        ChangeElevation(360.0f - Utilties.NormalizeAngle(localEulerAngles.x));
+    }
+
+    private void ChangeAzimuth(float angle)
+    {
+        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(angle), min: -90f, max: 90f);
         
         platform.localRotation = Quaternion.Euler(x: 0f, newAngle, z: 0f);
     }
     
-    public void ChangeElevation(float angle)
+    private void ChangeElevation(float angle)
     {
-        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(ball.localEulerAngles.x + angle * 0.1f), min: 0f, max: 90f);
+        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(angle), min: 0f, max: 90f);
         
         ball.localRotation = Quaternion.Euler(newAngle, y: 0f, z: 0f);
     }

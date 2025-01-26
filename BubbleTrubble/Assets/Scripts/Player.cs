@@ -10,10 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private Vector2 inputVector = Vector2.zero;
+    [SerializeField] private Material playerMaterial;
     private GameObject bubbleManager;
 
     private bool _isActive = false;
-    private bool _inTurret = false;
     
     private bool _holdsBubble = false;
     private GameObject bubbleObject;
@@ -22,13 +22,21 @@ public class Player : MonoBehaviour
 
     private TurretController turret;
     private TurretDoor turretDoor;
-    private bool InTurret => turret == null;
+    private bool InTurret => turret != null;
 
     private float lastInteractTime;
     private float interactableInhibitTime = 0.2f;
 
     private float enterGrace = 0.2f;
     private float graceTimer = 0.0f;
+    
+    private Vector2[] textureOffsets = new Vector2[]
+    {
+        new Vector2(0, 0),
+        new Vector2(0, 0.5f),
+        new Vector2(0.5f, 0.5f),
+        new Vector2(1f, 0.5f)
+    };
     
     [SerializeField]private Animator animator;
     
@@ -43,19 +51,15 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         lastInteractTime = 0;
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         if (!_isActive)
             return;
         
-        if (_inTurret)
+        if (InTurret)
         {
-            if (turret)
-            {
-                turret.Move(inputVector);
-            }
+            turret.Move(inputVector);
         }
         else
         {
@@ -73,14 +77,17 @@ public class Player : MonoBehaviour
         return _isActive;
     }
 
-    public void SetPlayerActive(bool active, Transform spawnPoint)
+    public void SetPlayerActive(bool active, Transform spawnPoint, Material playerMaterial)
     {
         _isActive = active;
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
         
-        rend = GetComponent<Renderer> ();
-        rend.material.SetTextureOffset("player_texture", new Vector2(512, 0));
+        Renderer[] childRenderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in childRenderers)
+        {
+            renderer.material = playerMaterial;
+        }
     }
 
     public void SetInTurret(TurretController turret, TurretDoor turretDoor)
@@ -88,7 +95,6 @@ public class Player : MonoBehaviour
         DropBubbleAndDestroy();
         this.turret = turret;
         this.turretDoor = turretDoor;
-        _inTurret = true;
         //animator.SetTrigger("elevator_reached");
         transform.position = new Vector3(transform.position.x, transform.position.y - 10, transform.position.z);
         enterGrace = 0.0f;
@@ -97,7 +103,6 @@ public class Player : MonoBehaviour
     private void LeaveTurret()
     {
         turretDoor.Leave();
-        _inTurret = false;
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         
         turret = null;
@@ -229,7 +234,7 @@ public class Player : MonoBehaviour
     
     public void Move()
     {
-        if (!_inTurret && _isActive)
+        if (!InTurret && _isActive)
         {
             moveDirection = new Vector3(-inputVector.x, 0, -inputVector.y).normalized;
 
