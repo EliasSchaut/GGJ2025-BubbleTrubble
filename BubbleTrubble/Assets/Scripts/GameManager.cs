@@ -1,18 +1,25 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     
     [SerializeField] private GameObject uiManagerGameObject;
+    
+    [SerializeField] private InputActionReference playAgainActionReference;
+    [SerializeField] private InputActionReference exitGameActionReference;
 
-    private int _lives = 3;
+
+    private int _lives = 1;
     private bool _isPaused = false;
 
     private int totalScore = 0;
     private int currentWave = 0;
+    
+    private bool gameOver = false;
     
     public static GameManager Instance
     {
@@ -37,7 +44,6 @@ public class GameManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -58,9 +64,8 @@ public class GameManager : MonoBehaviour
     
     public void OnGameOver()
     {
-        
-        Time.timeScale = 0.01f;
         uiManagerGameObject.GetComponent<UIManager>().ActivateGameOverPanel();
+        gameOver = true;
     }
 
     public void OnWin()
@@ -108,6 +113,10 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Debug.Log("RestartGame");
+        gameOver = false;
+        
+        
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
@@ -115,5 +124,34 @@ public class GameManager : MonoBehaviour
     public void PlayerJoined(int playerNumber)
     {
         uiManagerGameObject.GetComponent<UIManager>().SetPlayerConnected(playerNumber);
+    }
+    
+    public void OnPlayAgainClick(InputAction.CallbackContext context)
+    {
+        if (gameOver) RestartGame();
+    } 
+    
+    public void OnExitGameClick(InputAction.CallbackContext context)
+    {
+        if (gameOver) ExitGame();
+    } 
+    
+    
+    private void OnEnable()
+    {
+        playAgainActionReference.action.performed += OnPlayAgainClick;
+        playAgainActionReference.action.Enable();
+        
+        exitGameActionReference.action.performed += OnExitGameClick;
+        exitGameActionReference.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playAgainActionReference.action.performed -= OnPlayAgainClick;
+        playAgainActionReference.action.Disable();
+        
+        exitGameActionReference.action.performed -= OnExitGameClick;
+        exitGameActionReference.action.Disable();
     }
 }
