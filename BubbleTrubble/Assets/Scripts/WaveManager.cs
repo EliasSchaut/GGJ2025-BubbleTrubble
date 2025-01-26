@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour
         min = Vector3.Min(spawnA.position, spawnB.position);
         max = Vector3.Max(spawnA.position, spawnB.position);
 
-        timer = 15.0f;
+        timer = 10.0f;
     }
 
     private void StartWave()
@@ -88,8 +88,8 @@ public class WaveManager : MonoBehaviour
     {
         return currentWave switch
         {
-            0 => (1, 0, 0, 0),
-            < 3 => (currentWave, 0, 0, 0),
+            0 => (2, 0, 0, 0),
+            < 3 => (currentWave+1, 0, 0, 0),
             < 6 => (2, currentWave, 0, 0),
             < 9 => (3, 2, currentWave, 0),
             < 10 => (0, 0, 0, 1),
