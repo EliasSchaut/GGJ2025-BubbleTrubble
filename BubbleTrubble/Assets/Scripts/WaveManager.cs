@@ -18,7 +18,6 @@ public class WaveManager : MonoBehaviour
     private int currentWave;
     private int currentMothershipWave;
     private float timer;
-
     private float checkTimer;
 
     private static int enemyCount = 0;
@@ -32,7 +31,6 @@ public class WaveManager : MonoBehaviour
         max = Vector3.Max(spawnA.position, spawnB.position);
 
         timer = 15.0f;
-        checkTimer = 0;
     }
 
     private void StartWave()
@@ -74,9 +72,11 @@ public class WaveManager : MonoBehaviour
         }
         
         checkTimer += Time.deltaTime;
-        if (checkTimer > 1.0f) {
+        if (checkTimer >= 1.0f) {
             checkTimer = 0;
-            GameObject.
+            if (enemyCount == 0) {
+                soundManager.GetComponent<SoundManager>().SwitchToRelaxed();
+            }
         }
     }
 

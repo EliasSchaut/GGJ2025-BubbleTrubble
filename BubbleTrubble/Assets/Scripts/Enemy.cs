@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
             
             list.Add(part);
         }
+        WaveManager.IncreateEnemyCount();
     }
 
     private void Update()
@@ -70,6 +71,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Window"))
         {
             Destroy(gameObject);
+            WaveManager.DecreaseEnemyCount();
             
             GameManager.Instance.LoseLife();
             
@@ -139,6 +141,7 @@ public class Enemy : MonoBehaviour
         if (notStickiedColorCount == 0)
         {
             Destroy(gameObject);
+            WaveManager.DecreaseEnemyCount();
             
             GameManager.Instance.EnemyKilled(selfWorth);
         }
