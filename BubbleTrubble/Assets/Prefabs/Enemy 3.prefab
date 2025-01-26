@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 557388690794203759}
   - component: {fileID: 3805730960807001678}
   - component: {fileID: 7728867576296088853}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PartB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42fdd2ab532804dac68bac0080a961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleColor: 4
 --- !u!65 &7728867576296088853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -222,7 +221,7 @@ GameObject:
   - component: {fileID: 786222777706439117}
   - component: {fileID: 662676419838516419}
   - component: {fileID: 4765099898534152695}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PartC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42fdd2ab532804dac68bac0080a961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleColor: 2
 --- !u!65 &4765099898534152695
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -344,7 +342,7 @@ GameObject:
   - component: {fileID: 4425888485983541741}
   - component: {fileID: 3110072240246832025}
   - component: {fileID: 189929709309326595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +430,7 @@ GameObject:
   - component: {fileID: 6796244368963147027}
   - component: {fileID: 9047441730566632583}
   - component: {fileID: 1807581782214409251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PartA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d42fdd2ab532804dac68bac0080a961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bubbleColor: 6
 --- !u!65 &1807581782214409251
 BoxCollider:
   m_ObjectHideFlags: 0
