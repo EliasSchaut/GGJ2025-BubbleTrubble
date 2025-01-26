@@ -111,7 +111,6 @@ public class Bubble : MonoBehaviour, IInteractable
 
     public void DestroyBubble()
     {
-        // FIXME: play sound
         Destroy(gameObject);
     }
     

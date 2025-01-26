@@ -10,7 +10,7 @@ public class BubbleManager : MonoBehaviour
     private List<Bubble> bubblesToRemove = new List<Bubble>();
     private Bubble? bubbleOnSink = null;
     
-    [SerializeField] private GameObject bubbleDestroyAnimationPrefab = null;
+    [SerializeField] private GameObject bubbleDestroyAnimationPrefab;
 
     public void Add(Bubble bubble)
     {
