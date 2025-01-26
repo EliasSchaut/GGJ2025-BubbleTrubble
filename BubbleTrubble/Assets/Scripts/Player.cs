@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private Vector2 inputVector = Vector2.zero;
+    [SerializeField] private Material playerMaterial;
     private GameObject bubbleManager;
 
     private bool _isActive = false;
@@ -29,6 +30,14 @@ public class Player : MonoBehaviour
 
     private float enterGrace = 0.2f;
     private float graceTimer = 0.0f;
+    
+    private Vector2[] textureOffsets = new Vector2[]
+    {
+        new Vector2(0, 0),
+        new Vector2(0, 0.5f),
+        new Vector2(0.5f, 0.5f),
+        new Vector2(1f, 0.5f)
+    };
     
     [SerializeField]private Animator animator;
     
@@ -73,14 +82,17 @@ public class Player : MonoBehaviour
         return _isActive;
     }
 
-    public void SetPlayerActive(bool active, Transform spawnPoint)
+    public void SetPlayerActive(bool active, Transform spawnPoint, Material playerMaterial)
     {
         _isActive = active;
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
         
-        rend = GetComponent<Renderer> ();
-        rend.material.SetTextureOffset("player_texture", new Vector2(512, 0));
+        Renderer[] childRenderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in childRenderers)
+        {
+            renderer.material = playerMaterial;
+        }
     }
 
     public void SetInTurret(TurretController turret, TurretDoor turretDoor)

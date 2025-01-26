@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     
     private List<GameObject> _players = new List<GameObject>();
     [SerializeField] private GameObject[] playerSpawns;
+    [SerializeField] private Material[] playerMaterials;
     private int activePlayers = 0;
 
     public void OnPlayerJoin()
@@ -17,7 +18,7 @@ public class PlayerManager : MonoBehaviour
         {
             if(!player.GetComponent<Player>().IsPlayerActive())
             {
-                player.GetComponent<Player>().SetPlayerActive(true, playerSpawns[activePlayers].transform);
+                player.GetComponent<Player>().SetPlayerActive(true, playerSpawns[activePlayers].transform, playerMaterials[activePlayers]);
                 var bubbleManager = GameObject.FindGameObjectWithTag("BubbleManager");
                 player.GetComponent<Player>().SetBubbleManager(bubbleManager);
                 _players.Add(player);

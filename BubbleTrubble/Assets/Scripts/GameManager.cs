@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputActionReference exitGameActionReference;
 
 
-    private int _lives = 1;
+    private int _lives = 3;
     private bool _isPaused = false;
 
     private int totalScore = 0;

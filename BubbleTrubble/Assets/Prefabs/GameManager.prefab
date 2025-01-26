@@ -139,6 +139,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerMaterials:
+  - {fileID: 2100000, guid: 6870f20eb549940da8dd8c0ae5b10291, type: 2}
+  - {fileID: 2100000, guid: fcf2741fe95b3bb4789b5c4791b4af4b, type: 2}
+  - {fileID: 2100000, guid: 9d864c7cec1d9ee4babfb6fa5e3235f2, type: 2}
+  - {fileID: 2100000, guid: 53a003d39d8e83c4f9a08054e4a59efa, type: 2}
 --- !u!1001 &6559475123593232402
 PrefabInstance:
   m_ObjectHideFlags: 0
