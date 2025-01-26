@@ -1,29 +1,9 @@
 fileFormatVersion: 2
-guid: a4171a17e2d834afe86fd36fa77d20d3
+guid: 83e68293eebfa4fd898bd11260e05044
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: 3992096fd750b4d29b333cdfe8c5daf0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: machine_mat
-    second: {fileID: 2100000, guid: d03f91d97d21c447f931f7a37c761d42, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Voronoi_Pattern
-    second: {fileID: 2800000, guid: 34993ac8e2baf4db8abe943b6378c3ac, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: colormap
-    second: {fileID: 2800000, guid: 8cf5dd287ae084b50b9b9588af7483d2, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
