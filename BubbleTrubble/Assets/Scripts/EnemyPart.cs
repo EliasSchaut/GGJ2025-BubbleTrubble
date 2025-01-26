@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class EnemyPart : MonoBehaviour
 {
-    [SerializeField] private BubbleColor bubbleColor;
+    private BubbleColor bubbleColor;
     
-    public BubbleColor BubbleColor => bubbleColor;
-    
-    private void Start()
+    public BubbleColor BubbleColor
     {
-        BubbleColors.SetObjectColor(gameObject, bubbleColor);
+        get => bubbleColor;
+        set
+        {
+            bubbleColor = value;
+            BubbleColors.SetObjectColor(gameObject, bubbleColor);
+        }
     }
 
     public void SetGray(Boolean gray)

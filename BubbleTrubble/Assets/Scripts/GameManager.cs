@@ -154,4 +154,9 @@ public class GameManager : MonoBehaviour
         exitGameActionReference.action.performed -= OnExitGameClick;
         exitGameActionReference.action.Disable();
     }
+
+    public int GetCurrentWave()
+    {
+        return currentWave;
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 enum MoveMode
 {
@@ -30,6 +31,8 @@ public class Enemy : MonoBehaviour
     {
         foreach (EnemyPart part in parts)
         {
+            part.BubbleColor = GetRandomColor();
+            
             if (!partsByColor.TryGetValue(part.BubbleColor, out List<EnemyPart> list))
             {
                 partsByColor[part.BubbleColor] = list = new List<EnemyPart>();
@@ -38,6 +41,35 @@ public class Enemy : MonoBehaviour
             list.Add(part);
         }
         WaveManager.IncreateEnemyCount();
+    }
+    
+    private BubbleColor GetRandomColor()
+    {
+        int count = GameManager.Instance.GetCurrentWave();
+        List<BubbleColor> colors = new List<BubbleColor>();
+        
+        if (count < 6)
+        {
+            colors = new() {BubbleColor.Red, BubbleColor.Blue, BubbleColor.Yellow};
+        }
+        else if (count < 12)
+        {
+            colors = new()
+            {
+                BubbleColor.Red, BubbleColor.Blue, BubbleColor.Yellow, BubbleColor.Green, BubbleColor.Purple,
+                BubbleColor.Orange
+            };
+        }
+        else
+        {
+            colors = new()
+            {
+                BubbleColor.Red, BubbleColor.Blue, BubbleColor.Yellow, BubbleColor.Green, BubbleColor.Purple,
+                BubbleColor.Orange, BubbleColor.Brown
+            };
+        }
+
+        return colors[Random.Range(0, colors.Count)];
     }
 
     private void Update()
@@ -146,4 +178,5 @@ public class Enemy : MonoBehaviour
             GameManager.Instance.EnemyKilled(selfWorth);
         }
     }
+    
 }
