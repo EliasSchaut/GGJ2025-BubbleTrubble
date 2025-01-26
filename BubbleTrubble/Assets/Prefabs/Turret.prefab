@@ -148,6 +148,7 @@ MonoBehaviour:
   animator: {fileID: 8791925120109643757}
   aimDistance: 50
   aimerBounds: {x: 50, y: 50}
+  lift: 35
   aimer: {fileID: 5057714788919346748}
 --- !u!114 &4228617610628057826
 MonoBehaviour:

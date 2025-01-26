@@ -18,7 +18,6 @@ public class Turret : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [SerializeField] private float aimDistance = 50.0f;
-    [SerializeField] private Vector2 aimerBounds = new (50.0f, 50.0f);
     [SerializeField] private GameObject aimer;
 
     private float timer;
@@ -48,8 +47,8 @@ public class Turret : MonoBehaviour
     {
         Vector3 aimerPos = aimer.transform.localPosition;
         
-        aimerPos.x = Mathf.Clamp(aimerPos.x + dir.x, -aimerBounds.x, aimerBounds.x);
-        aimerPos.y = Mathf.Clamp(aimerPos.y + dir.y, -aimerBounds.y, aimerBounds.y);
+        aimerPos.x = Mathf.Clamp(aimerPos.x + dir.x, -60, 60);
+        aimerPos.y = Mathf.Clamp(aimerPos.y + dir.y, -15, 15);
         aimerPos.z = aimDistance;
         
         aimer.transform.localPosition = aimerPos;
@@ -76,14 +75,14 @@ public class Turret : MonoBehaviour
 
     private void ChangeAzimuth(float angle)
     {
-        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(angle), min: -90f, max: 90f);
+        float newAngle = Utilties.NormalizeAngle(angle);
         
         platform.localRotation = Quaternion.Euler(x: 0f, newAngle, z: 0f);
     }
     
     private void ChangeElevation(float angle)
     {
-        float newAngle = Mathf.Clamp(Utilties.NormalizeAngle(angle), min: 0f, max: 90f);
+        float newAngle = Utilties.NormalizeAngle(angle);
         
         ball.localRotation = Quaternion.Euler(newAngle, y: 0f, z: 0f);
     }
