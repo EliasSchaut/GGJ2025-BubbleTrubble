@@ -40,6 +40,16 @@ public class UIManager : MonoBehaviour
         gameOverPanel.SetActive(true);
     }
 
+    public void OnPlayAgainClick()
+    {
+        GameManager.Instance.RestartGame();
+    }
+    
+    public void OnQuitGameClick()
+    {
+        GameManager.Instance.ExitGame();
+    }
+
 
 
 

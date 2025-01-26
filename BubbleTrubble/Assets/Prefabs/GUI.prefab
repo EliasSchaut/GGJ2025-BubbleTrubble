@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5626542223929192780}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnPlayAgain
+        m_MethodName: OnPlayAgainClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -256,7 +256,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5626542223929192780}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnQuitGame
+        m_MethodName: OnQuitGameClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -383,8 +383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c9999d49523cf4da6d8b85fabe3191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playAgainActionReference: {fileID: 8729647937553090025, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  exitGameActionReference: {fileID: 9003443667601432166, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   livesText: {fileID: 7588382173232493561}
   scoreText: {fileID: 3227217874537711184}
   waveText: {fileID: 7573565968751296554}
